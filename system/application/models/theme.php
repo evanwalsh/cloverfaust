@@ -35,6 +35,14 @@ class Theme extends Model {
 			return $count." reply";
 		}
 	}
+	function postLink($id,$author,$type,$text = false){
+		if(empty($text)){
+			$text = ucwords($type);
+		}
+		if($this->common->getGroup() == 1 && $this->session->userdata("id") == $author || $this->session->userdata("id") == $author){
+			return anchor("$type/post/".$id,$text,array("class" => $type."link","id" => $type."$id"));
+		}
+	}
 	function getAuthor($id){
 		$this->db->where("id",$id);
 		$query = $this->db->get("users");
@@ -45,11 +53,6 @@ class Theme extends Model {
 			$output->name = '<span style="color:red">author not found</span>';
 		}
 		return $output->name;
-	}
-	function adminLinks($id,$author){
-		if($this->klei->getGroup() == 1 && $this->session->userdata("id") == $author || $this->session->userdata("id") == $author){
-			return '<div class="adminlinks">'.anchor("x/process/delete/".$id,"Delete",array("class" => "deletelink","id" => "delete$id"))." ~ ".anchor("x/edit/".$id,"Edit",array("class" => "editlink","id" => "edit$id"))."</div>";
-		}
 	}
 }
 ?>

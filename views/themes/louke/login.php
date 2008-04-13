@@ -1,4 +1,4 @@
-<?=form_open("backend/login",array("id" => "loginform"))?>
+<?=form_open("x/process/login",array("id" => "loginform"))?>
 	<p><?=form_label("Username")?></p>
 	<p><?=form_input("user")?></p>
 	<p><?=form_label("Password")?></p>

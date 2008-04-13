@@ -1,0 +1,5 @@
+Consolidate display post/forum
+-basically, make the links /forum/post-title
+
+Separate controllers [current]
+-make controllers for edit/create/delete

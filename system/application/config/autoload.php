@@ -108,7 +108,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('theme');
+$autoload['model'] = array('common','theme');
 
 
 /*

@@ -1,4 +1,9 @@
 <?php
+
+// This file has been modified by
+// Evan Walsh
+// define('PUBPATH',str_replace("index.php","",$_SERVER['SCRIPT_FILENAME'])); was added
+
 /*
 |---------------------------------------------------------------
 | PHP ERROR REPORTING LEVEL

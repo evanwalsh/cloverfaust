@@ -6,7 +6,7 @@
 	<li><?=anchor("x/account","edit your account")?></li>
 	<li><?=anchor("x/invite","invite someone")?></li>
 	<li><?=anchor("display/help","get some help")?></li>
-	<?if($this->common->getGroup() == 1):?>
+	<?if($this->klei->getGroup() == 1):?>
 	<li class="adminlink"><?=anchor("admin","administrate")?></li>
 	<?endif;?>
 	<li><?=anchor("x/logout","logout")?></li>
