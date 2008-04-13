@@ -92,11 +92,11 @@ class Backend_m extends Model {
 		if($query->num_rows() > 0){
 			$info = $query->row();
 			if($info->password == $pass){
-				$this->load->helper("cookie");
 				$this->session->set_userdata("id",$info->id);
 				$this->session->set_userdata("name",$info->name);
 				$this->session->set_userdata("group",$info->group);
 				$this->session->set_userdata("timezone",$info->timezone);
+				$this->session->set_userdata("editor",$info->editor);
 				$this->common->setFlash("message","Login successful");
 				redirect("show/home");
 			}
