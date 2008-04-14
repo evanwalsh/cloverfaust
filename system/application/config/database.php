@@ -1,4 +1,8 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+// This file has been modified by the clvrfst team
+// config YAML access added
+
 /*
 | -------------------------------------------------------------------
 | DATABASE CONNECTIVITY SETTINGS
@@ -37,12 +41,16 @@
 $active_group = "default";
 $active_record = TRUE;
 
-$db['default']['hostname'] = "localhost";
-$db['default']['username'] = "root";
-$db['default']['password'] = "root";
-$db['default']['database'] = "clvrfst";
+$ci =& get_instance(); // gets $this, basically
+$ci->load->library("Spyc"); // loads yaml parser
+$info = $ci->spyc->load("config.php"); // gets config :]
+
+$db['default']['hostname'] = $info["database"]["host"];
+$db['default']['username'] = $info["database"]["user"];
+$db['default']['password'] = $info["database"]["pass"];
+$db['default']['database'] = $info["database"]["db"];
 $db['default']['dbdriver'] = "mysql";
-$db['default']['dbprefix'] = "";
+$db['default']['dbprefix'] = $info["database"]["prefix"];
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;

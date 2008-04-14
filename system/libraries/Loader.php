@@ -1,7 +1,6 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-// This file has been modified by
-// Evan Walsh
+// This file has been modified by the clvrfst team
 // $this->_ci_view_path = APPPATH.'views/'; became $this->_ci_view_path = PUBPATH.'views/';
 
 /**

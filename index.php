@@ -1,7 +1,6 @@
 <?php
 
-// This file has been modified by
-// Evan Walsh
+// This file has been modified by the clvrfst team
 // define('PUBPATH',str_replace("index.php","",$_SERVER['SCRIPT_FILENAME'])); was added
 
 /*

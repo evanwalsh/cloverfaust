@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title><?=$siteTitle?> &#8250; <?=$pageTitle?></title>
-		<!--<link rel="stylesheet" href="<?=base_url()?>views/themes/<?=$theme?>/css/style.css"/>-->
+		<link rel="stylesheet" href="<?=base_url()?>views/themes/<?=$theme?>/css/style.css"/>
 		<script src="<?=base_url()?>views/js/jquery.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<?=base_url()?>views/themes/<?=$theme?>/js/main.js" type="text/javascript" charset="utf-8"></script>
 	</head>
@@ -11,21 +11,19 @@
 			<div id="head">
 				<h1><?=$siteTitle?></h1>
 				<h2><?=$siteSubtitle?></h2>
-				<div id="title"><?=$pageTitle?></div>
+				<h3><?=$pageTitle?></h3>
 			</div>
 			<div id="content">
-				<div id="main">
-					<?=$message?>
-					<?=$error?>
-					<?=$yield?>
-				</div>
+				<?=$message?>
+				<?=$error?>
+				<?=$yield?>
 			</div>
 			<div id="footer">
 				
 			</div>
 		</div>
 		
-		<!-- clvrfst aeta :: {elapsed_time} :: by evan walsh -->
+		<!-- clvrfst aeta :: {elapsed_time} is your lucky number :: by evan walsh -->
 		
 	</body>
 </html>

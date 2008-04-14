@@ -2,33 +2,31 @@
 class Admin extends Controller {
 	function Admin(){
 		parent::Controller();
-		$this->load->model("main","klei");
-		$this->load->model("backend");
-		$this->load->model("theme");
+		$this->load->model("admin_m","m");
 	}
 	function index(){
 		redirect("admin/main");
 	}
 	function main(){
-		$this->backend->yield("main");
+		$this->m->yield("main");
 	}
 	function forums(){
-		$this->backend->yield("forums");
+		$this->m->yield("forums");
 	}
 	function users(){
-		$this->backend->yield("users");
+		$this->m->yield("users");
 	}
 	function edit(){
-		$this->backend->yield("edit");
+		$this->m->yield("edit");
 	}
 	function delete(){
-		$this->backend->delete();
+		$this->m->delete();
 	}
 	function process(){
-		$this->backend->process();
+		$this->m->process();
 	}
 	function create(){
-		$this->backend->yield("create");
+		$this->m->yield("create");
 	}
 }
 ?>

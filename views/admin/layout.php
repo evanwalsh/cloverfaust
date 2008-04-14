@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title><?=$siteTitle?> &#8250; <?=$pageTitle?></title>
-		<link rel="stylesheet" href="<?=base_url()?>views/themes/default/css/style.css"/>
+		<link rel="stylesheet" href="<?=base_url()?>views/admin/css/style.css"/>
 		<script src="<?=base_url()?>views/js/jquery.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<?=base_url()?>views/themes/default/js/main.js" type="text/javascript" charset="utf-8"></script>
 	</head>
