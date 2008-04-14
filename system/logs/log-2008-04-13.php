@@ -95,3 +95,8 @@ ERROR - 2008-04-13 22:21:44 --> Query error: No database selected
 ERROR - 2008-04-13 22:23:53 --> Severity: Warning  --> mysql_pconnect() [<a href='function.mysql-pconnect'>function.mysql-pconnect</a>]: Access denied for user 'root2'@'localhost' (using password: YES) /Users/evan/Sites/htdocs/clvrfst/system/database/drivers/mysql/mysql_driver.php 69
 ERROR - 2008-04-13 22:23:53 --> Unable to connect to the database
 ERROR - 2008-04-13 22:24:35 --> Query error: Table 'clvrfst.cf_forums' doesn't exist
+ERROR - 2008-04-13 22:33:15 --> Severity: Notice  --> Undefined variable: info /Users/evan/Sites/htdocs/clvrfst/system/application/models/common.php 8
+ERROR - 2008-04-13 22:33:16 --> Severity: Notice  --> Undefined variable: info /Users/evan/Sites/htdocs/clvrfst/system/application/models/common.php 8
+ERROR - 2008-04-13 22:36:46 --> Severity: Notice  --> Undefined property:  Show::$profiler /Users/evan/Sites/htdocs/clvrfst/system/application/controllers/show.php 5
+ERROR - 2008-04-13 22:38:06 --> Query error: Table 'clvrfst.options' doesn't exist
+ERROR - 2008-04-13 22:46:10 --> 404 Page Not Found --> 

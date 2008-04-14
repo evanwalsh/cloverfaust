@@ -3,10 +3,18 @@ class Common extends Model{
 	function Common(){
 		parent::model();
 	}
-	function yield($view){
-		$data["siteTitle"] = $this->getOption("sitetitle");
-		$data["siteSubtitle"] = $this->getOption("sitesubtitle");
-		$data["theme"] = $this->getOption("theme");
+	function yield($view,$access = false){
+		if($access == "guest" && $this->loggedIn() == true){
+			redirect("show/home");
+		}
+		elseif($access == "user" && $this->loggedIn() == false){
+			redirect("show/signup");
+		}
+		$this->load->library("Spyc");
+		$info = $this->spyc->load("config.php");
+		$data["siteName"] = $info["site"]["name"];
+		$data["siteSubtitle"] = $info["site"]["subtitle"];
+		$data["theme"] = $info["site"]["theme"];
 		// error/message handling
 		$data["message"] = null;
 		$data["error"] = null;
@@ -23,10 +31,9 @@ class Common extends Model{
 			$data["pageTitle"] = "Home";
 		}
 		elseif($view == "forums"){
-			$query = $this->db->get("forums");
-			if($query->num_rows() > 0){
+			if(!empty($info["forums"])){
 				$this->db->cache_on();
-				$data["forums"] = $query->result();
+				$data["forums"] = $info["forums"];
 			}
 			else{
 				$data["forums"] = "No forums currently exists";
@@ -36,7 +43,7 @@ class Common extends Model{
 		elseif($view == "forum"){
 			$forum = $this->uri->segment(3);
 			$post = $this->uri->segment(4);
-			if(!empty($forum)){
+			if(!empty($forum) && in_array($forum,$info["forums"])){
 				$this->db->order_by("lastpost","desc");
 				$this->db->where("forum",$forum);
 				$offset = $this->uri->segment(4);
@@ -59,9 +66,8 @@ class Common extends Model{
 				else{
 					$data["posts"] = "No posts!";
 				}
-				$nameq = $this->db->get_where("forums",array("url" => $forum));
-				$name = $nameq->row();
-				$data["pageTitle"] = "Forum: ".$name->name;
+				$name = array_search($forum,$info["forums"]); // gets array key by value
+				$data["pageTitle"] = "Forum: $name";
 			}
 			else{
 				redirect("show/forums");
@@ -100,15 +106,12 @@ class Common extends Model{
 			$data["origpost"] = $query->row();
 			$data["pageTitle"] = "Replying to \"".$data["origpost"]->title."\"";
 		}
-		elseif($view == "newpost"){
+		elseif($view == "post"){
 			$forum = $this->uri->segment(3);
-			if(empty($forum)){
-				redirect();
+			if(!in_array($forum,$info["forums"])){
+				redirect("show/forums");
 			}
-			else{
-				$data["forum"] = $forum;
-			}
-			$data["pageTitle"] = "Creating a new post";
+			$data["pageTitle"] = "New topic: ".array_search($forum,$info["forums"]);
 		}
 		elseif($view == "account"){
 			$this->db->where("id",$this->session->userdata("id"));
@@ -138,6 +141,9 @@ class Common extends Model{
 			$this->db->or_like("body",$data["term"]);
 			$query = $this->db->get("posts");
 			$data["posts"] = $query->result();
+		}
+		elseif($view == "signup"){
+			$data["pageTitle"] = "Signup";
 		}
 		$data["yield"] = $this->load->view("themes/$data[theme]/$view",$data,true);
 		$this->load->view("themes/$data[theme]/layout",$data);

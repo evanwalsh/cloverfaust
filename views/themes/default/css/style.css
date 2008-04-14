@@ -14,8 +14,6 @@ h3{font-size:1.5em;}
 #head h1{font-weight:900;font-size:3em;}
 #head h2{font-size:1.5em;color:#444;}
 #content{margin:10px 0;}
-.block{background:#312622;margin-bottom:10px;border-bottom:#73E1F7 1px dotted;}
-.block h3,.head{font-size:2em;font-weight:600;background:#291E1B;padding:4px;border-bottom:#73E1F7 1px dotted;}
 .head{border:0;margin:0 0 10px 0;background:0;font-size:1.3em;}
 #side{width:250px;float:left;}
 #side ul{padding:10px;font-size:1.1em;font-weight:bold;}
@@ -23,24 +21,16 @@ h3{font-size:1.5em;}
 #side ul li a{color:#73E1F7;}
 #side ul li a:hover{color:#fff;}
 #main{width:640px;float:right;}
-.uparrow,.downarrow{padding:15px 0;width:30px;float:right;opacity:0.5;cursor:pointer;}
-.uparrow:hover,.downarrow:hover{opacity:1;}
-.uparrow{background:url(../img/arrow.png) no-repeat center;}
-.downarrow{background:url(../img/arrow2.png) no-repeat center;}
 ol.posts{padding:10px;}
 ol.posts li{margin:0 0 10px 0;}
 ol.posts li h4{background:#C2F773;color:#637E48;padding:2px 0 2px 5px;text-transform:lowercase;font-size:.9em;}
 ol.posts li h5{background:#42312C;padding:5px;}
-ol#forums li,ol#forums li.block h3{border:0;}
-ol#forums li h4{padding:10px 10px 0 10px;font-size:1.6em;}
-ol#forums li h4 .last{color:#666;}
-ol#forums li p{padding:10px;background:#42312C;}
 ol#forums li h3 .numposts{letter-spacing:-2px;color:#666;float:right;padding:4px 8px 4px 4px;margin:-4px -4px 0 0;text-transform:uppercase;}
+ol#forums li h3{padding:10px;background:#291E1B;}
+ol#forums li.alt h3{background:#312421;}
 ol#posts li{margin:0 0 10px 0;border:0;}
-ol#posts li h3{border:0;}
 ol#posts li h4{padding:10px;text-transform:lowercase;font-size:1.3em;}
 .clr{clear:both;}
-.arrows{margin-top:-50px;padding:10px;}
 .message,.error{padding:10px;font-size:2em;color:#fff;}
 .message{background:#000;}
 .error{background:red;}
