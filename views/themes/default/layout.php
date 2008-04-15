@@ -7,12 +7,14 @@
 		<script src="<?=base_url()?>views/themes/<?=$theme?>/js/main.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body id="<?=$this->uri->segment(1).$this->uri->segment(2).$this->uri->segment(3)?>">
-		<div id="wrap">
-			<div id="head">
+		<div id="head">
+			<div class="inside">
 				<h1><?=$siteName?></h1>
 				<h2><?=$siteSubtitle?></h2>
 				<h3><?=$pageTitle?></h3>
 			</div>
+		</div>
+		<div id="wrap">
 			<div id="content">
 				<?=$message?>
 				<?=$error?>

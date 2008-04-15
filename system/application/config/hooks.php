@@ -7,4 +7,12 @@
 | files.  Please see the user guide for info...
 |
 */
+
+$hook['pre_controller'] = array(
+	'class' => 'Install_hook',
+	'function' => 'go',
+	'filename' => 'Install_hook.php',
+	'filepath' => 'hooks'
+);
+
 ?>

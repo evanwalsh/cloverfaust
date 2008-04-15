@@ -13,26 +13,26 @@ class Theme extends Model {
 			return $num." post";
 		}
 	}
-	function numTopics($forum){
+	function numTopics($forum,$single = "topic",$plural = "topics"){
 		$this->db->where("forum",$forum);
 		$this->db->where("type","first");
 		$num = $this->db->count_all_results("posts");
 		if($num > 1 || $num == 0){
-			return $num." topics";
+			return $num." $plural";
 		}
 		else{
-			return $num." topic";
+			return $num." $single";
 		}
 	}
-	function numReplies($forum){
+	function numReplies($forum,$single = "reply",$plural = "replies"){
 		$this->db->where("url",$forum);
 		$this->db->where("type","reply");
 		$count = $this->db->count_all_results("posts");
 		if($count > 1 || $count == 0){
-			return $count." replies";
+			return $count." $plural";
 		}
 		else{
-			return $count." reply";
+			return $count." $single";
 		}
 	}
 	function postLink($id,$author,$type,$text = false){
@@ -53,6 +53,9 @@ class Theme extends Model {
 			$output->name = '<span style="color:red">author not found</span>';
 		}
 		return $output->name;
+	}
+	function postDate($time,$format = "%M %d %Y %h:%i%a"){
+		return mdate($format,gmt_to_local($time,$this->session->userdata("timezone")));
 	}
 }
 ?>

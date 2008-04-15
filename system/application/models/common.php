@@ -121,11 +121,16 @@ class Common extends Model{
 		}
 		elseif($view == "edit"){
 			$query = $this->db->get_where("posts",array("id" => $this->uri->segment(3)));
-			$data["post"] = $query->row();
-			if($this->session->userdata("id") !== $data["post"]->author){
-				redirect("display/forums");
+			if($query->num_rows() > 0){
+				$data["post"] = $query->row();
+				if($this->session->userdata("id") !== $data["post"]->author){
+					redirect("show/forums");
+				}
+				$data["pageTitle"] = "Editing a post";
 			}
-			$data["pageTitle"] = "Editing a post";
+			else{
+				redirect();
+			}
 		}
 		elseif($view == "login"){
 			$data["pageTitle"] = "Login";

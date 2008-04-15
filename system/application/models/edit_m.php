@@ -11,7 +11,7 @@ class Edit_m extends Model{
 		$this->validation->set_error_delimiters(null,null);
 		if ($this->validation->run() == FALSE){
 			$this->setFlash("error",$this->validation->error_string);
-			redirect("x/edit/".$this->input->post("id"));
+			redirect("edit/post/".$this->input->post("id"));
 		}
 		if($this->session->userdata("editor") == "textile"){
 			$this->load->library("Textile");
@@ -23,7 +23,7 @@ class Edit_m extends Model{
 		}
 		$data = array(
 			"body" => $body,
-			"conv_body" => $conv_body;
+			"conv_body" => $conv_body
 		);
 		$this->db->where("url",$this->input->post("post"));
 		$this->db->where("id",$this->input->post("id"));

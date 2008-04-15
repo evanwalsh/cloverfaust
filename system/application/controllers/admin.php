@@ -5,9 +5,9 @@ class Admin extends Controller {
 		$this->load->model("admin_m","m");
 	}
 	function index(){
-		redirect("admin/main");
+		redirect("admin/home");
 	}
-	function main(){
+	function home(){
 		$this->m->yield("main");
 	}
 	function forums(){
@@ -16,17 +16,30 @@ class Admin extends Controller {
 	function users(){
 		$this->m->yield("users");
 	}
-	function edit(){
-		$this->m->yield("edit");
+	function create(){
+		if(empty($_POST)){
+			$this->m->yield("create");
+		}
+		else{
+			$this->m->create();
+		}
 	}
 	function delete(){
-		$this->m->delete();
+		if(empty($_POST)){
+			$this->m->yield("create");
+		}
+		else{
+			$this->m->create();
+		}
 	}
-	function process(){
-		$this->m->process();
+	function edit(){
+		$this->m->edit();
 	}
-	function create(){
-		$this->m->yield("create");
+	function user(){
+		$this->m->yield("user");
+	}
+	function forum(){
+		$this->m->yield("forum");
 	}
 }
 ?>

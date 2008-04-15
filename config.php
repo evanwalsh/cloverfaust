@@ -1,9 +1,9 @@
 <?php if(!defined('BASEPATH'))exit();?>
 ---
 site:
-    name: clvrfst
+    name: devclvrfst
     subtitle: from git, no less
-    theme: default 
+    theme: default
 
 database:
     user: root
@@ -14,5 +14,3 @@ database:
 
 forums:
     General: general
-    Testing: testing
-    Questions: questions
