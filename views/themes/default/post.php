@@ -1,4 +1,4 @@
-<?=form_open("create/post/".$this->uri->segment(3))?>
+<?=form_open("create/topic/".$this->uri->segment(3))?>
 	<p><?=form_label("Your post's title")?></p>
 	<p><?=form_input("title")?></p>
 	<p><?=form_label("Your post's body")?></p>

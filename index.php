@@ -13,7 +13,7 @@
 | For more info visit:  http://www.php.net/error_reporting
 |
 */
-	error_reporting(E_ALL);
+	error_reporting(0);
 
 /*
 |---------------------------------------------------------------
@@ -27,7 +27,7 @@
 | NO TRAILING SLASH!
 |
 */
-	$system_folder = "system";
+	$system_folder = "core";
 
 /*
 |---------------------------------------------------------------
@@ -44,7 +44,7 @@
 | NO TRAILING SLASH!
 |
 */
-	$application_folder = "application";
+	$application_folder = "app";
 
 /*
 |===============================================================

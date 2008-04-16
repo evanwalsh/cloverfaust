@@ -1,16 +1,14 @@
 <?php if(!defined('BASEPATH'))exit();?>
 ---
-site:
-    name: devclvrfst
-    subtitle: from git, no less
+site: 
+    name: Test
+    subtitle: This is a test
     theme: default
-
-database:
+database: 
+    host: localhost
     user: root
     pass: root
-    host: localhost
     db: clvrfst
     prefix: 
-
-forums:
-    General: general
+forums: 
+    My forum: my-forum
