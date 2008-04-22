@@ -2,7 +2,6 @@
 class Create extends Controller {
     function Create(){
         parent::Controller();
-		//$this->output->enable_profiler(true);
 		$this->load->model("create_m","m");
     }
 	function index(){
@@ -23,6 +22,9 @@ class Create extends Controller {
 		else{
 			$this->m->reply();
 		}
+	}
+	function forum(){
+		$this->m->forum();
 	}
 }
 ?>

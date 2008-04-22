@@ -7,7 +7,7 @@ class Delete extends Controller {
 	function index(){
 		redirect();
 	}
-	function apost(){
+	function post(){
 		$this->m->post();
 	}
 }

@@ -13,7 +13,7 @@ class Create_m extends Model{
 		$body = $this->input->post("body");
 		$url = url_title($title);
 		$forum = $this->uri->segment(3);
-		$this->validation->set_fields($fields);
+		$this->validation->set_fields($rules);
 		if ($this->validation->run() == FALSE){
 			$this->setFlash("error",$this->validation->error_string);
 			redirect("create/post/$forum");
@@ -48,10 +48,11 @@ class Create_m extends Model{
 	}
 	function reply(){
 		// TODO $forum,$post
-		$this->load->library("Textile");
 		$this->load->library('validation');
 		$rules["body"] = "required";
 		$rules["forum"] = "required";
+		$rules["origauthor"] = "required";
+		$rules["post"] = "required";
 		$this->validation->set_error_delimiters(null,null);
 		$this->validation->set_rules($rules);
 		if ($this->validation->run() == FALSE){
@@ -60,14 +61,14 @@ class Create_m extends Model{
 		}
 		if($this->session->userdata("editor") == "textile"){
 			$this->load->library("Textile");
-			$conv_body = $this->textile->TextileThis($body);
+			$conv_body = $this->textile->TextileThis($this->input->post("body"));
 		}
 		elseif($this->session->userdata("editor") == "markdown"){
 			$this->load->library("Markdown");
-			$conv_body = $this->markdown->transform($body);
+			$conv_body = $this->markdown->transform($this->input->post("body"));
 		}
 		$data = array(
-			"title" => $this->urlToTitle($this->uri->segment(3)),
+			"title" => $this->input->post("title"),
 			"url" => $this->input->post("post"),
 			"author" => $this->session->userdata("id"),
 			"body" => $this->input->post("body"),
@@ -81,18 +82,30 @@ class Create_m extends Model{
 		$this->db->insert("posts",$data);
 		$this->db->where("url",$this->input->post("post"));
 		$this->db->update("posts",array("lastpost" => now()));
-		redirect("show/forum/".$forum."/".$post);
+		redirect("show/topic/".$this->input->post("post"));
 	}
 	function forum(){
-		$name = $this->input->post("name");
-		if(!empty($name)){
-			$url = url_title($name);
-			$this->db->insert("forums",array("name" => $name,"url" => $url));
-			redirect("admin/forums");
+		if($this->common->getGroup() == 1){
+			$name = $this->input->post("name");
+			if(!empty($name)){
+				$url = url_title($name);
+				$this->load->library("Spyc");
+				$conf = $this->spyc->load("config.php");
+				$conf["forums"][$name] = $url;
+				$done = $this->spyc->dump($conf,4);
+				$handle = fopen("config.php","w");
+				$output = "<?php if(!defined('BASEPATH'))exit();?>\n$done";
+				fwrite($handle,$output);
+				fclose($handle);
+				redirect("admin/forums");
+			}
+			else{
+				$this->common->setFlash("error","No forum name entered");
+				redirect("admin/create/forum");
+			}
 		}
 		else{
-			$this->klei->setFlash("error","No forum name entered");
-			redirect("admin/create/forum");
+			redirect();
 		}
 	}
 	function urlToTitle($url){

@@ -3,44 +3,50 @@ class Theme extends Model {
     function Theme(){
         parent::Model();
     }
-	function numPosts($forum){
-		$this->db->where("forum",$forum);
+	function postStats($forum,$type,$single = false,$plural = false){
+		if($type == "allposts"){
+			$this->db->where("forum",$forum);
+			if(empty($single)){
+				$single = "post";
+			}
+			if(empty($plural)){
+				$plural = "posts";
+			}
+		}
+		if($type == "topics"){
+			$this->db->where("forum",$forum);
+			$this->db->where("type","first");
+			if(empty($single)){
+				$single = "topics";
+			}
+			if(empty($plural)){
+				$plural = "topics";
+			}
+		}
+		if($type == "replies"){
+			$this->db->where("url",$forum);
+			$this->db->where("type","reply");
+			if(empty($single)){
+				$single = "reply";
+			}
+			if(empty($plural)){
+				$plural = "replies";
+			}
+		}
 		$num = $this->db->count_all_results("posts");
 		if($num > 1 || $num == 0){
-			return $num." posts";
+			return $num." ".$plural;
 		}
 		else{
-			return $num." post";
+			return $num." ".$single;
 		}
 	}
-	function numTopics($forum,$single = "topic",$plural = "topics"){
-		$this->db->where("forum",$forum);
-		$this->db->where("type","first");
-		$num = $this->db->count_all_results("posts");
-		if($num > 1 || $num == 0){
-			return $num." $plural";
-		}
-		else{
-			return $num." $single";
-		}
-	}
-	function numReplies($forum,$single = "reply",$plural = "replies"){
-		$this->db->where("url",$forum);
-		$this->db->where("type","reply");
-		$count = $this->db->count_all_results("posts");
-		if($count > 1 || $count == 0){
-			return $count." $plural";
-		}
-		else{
-			return $count." $single";
-		}
-	}
-	function postLink($id,$author,$type,$text = false){
+	function postLink($id,$author,$type,$text = false,$before = false,$after = false){
 		if(empty($text)){
 			$text = ucwords($type);
 		}
 		if($this->common->getGroup() == 1 && $this->session->userdata("id") == $author || $this->session->userdata("id") == $author){
-			return anchor("$type/post/".$id,$text,array("class" => $type."link","id" => $type."$id"));
+			return $before.anchor("$type/post/".$id,$text,array("class" => $type."link","id" => $type."$id")).$after;
 		}
 	}
 	function getAuthor($id){
@@ -55,7 +61,11 @@ class Theme extends Model {
 		return $output->name;
 	}
 	function postDate($time,$format = "%M %d %Y %h:%i%a"){
-		return mdate($format,gmt_to_local($time,$this->session->userdata("timezone")));
+		$timezone = $this->session->userdata("timezone");
+		if(empty($timezone)){
+			$timezone = "UTC";
+		}
+		return mdate($format,gmt_to_local($time,$timezone));
 	}
 }
 ?>

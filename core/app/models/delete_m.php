@@ -5,7 +5,7 @@ class Delete_m extends Model {
 	}
 	function post(){
 		$id = $this->uri->segment(3);
-		if($this->loggedIn() == false || $){
+		if($this->common->loggedIn() == false){
 			redirect();
 		}
 		else{

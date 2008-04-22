@@ -4,14 +4,14 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 body{background:#fff;color:#111;text-shadow:#000 0 0 0;font:1em Helvetica,Arial,sans-serif;}
 #wrap{width:600px;margin:20px auto;}
 #head{margin:0 0 10px 0;}
-#head h1,#head h2{display:inline;font-weight:bold;}
-#head h1{font-size:3em;}
-#head h2{font-size:2em;color:#aaa;}
+#head h1,#head h2{font-weight:bold;display:inline;}
+#head h1{font-size:2em;}
+#head h2{font-size:.9em;color:#aaa;}
 #content{margin:0 0 10px 0;}
-h3{font-size:2em;font-weight:bold;margin:10px 0;}
-#form h3{clear:both;margin:0 0 -15px 0;}
+h3{font-size:1.5em;font-weight:bold;}
+#form h3{clear:both;}
 ol{margin:5px 0 20px 0;}
-ol li{clear:both;padding:20px 0;}
+ol li{clear:both;padding:5px 0 0 0;}
 ol li input,ol li label{float:left;}
 ol li label{width:140px;font-size:.9em;padding:2px;}
 ol li input{padding:2px;font-size:.9em;font-family:Helvetica,Arial,sans-serif;border:#aaa 1px solid;}

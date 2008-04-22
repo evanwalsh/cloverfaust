@@ -7,9 +7,10 @@ body{color:#111;font: 1em Helvetica,Arial,sans-serif;text-shadow:#000 0 0 0;}
 .clr{clear:both;}
 #wrap{width:700px;margin:8px 0 8px 15px;}
 #head{background:#333;color:#fff;padding:8px 0 8px 15px;}
-#head h1{float:left;}
-#nav{float:right;padding-right:10;}
-#nav li{display:inline;}
-#nav li a{text-transform:lowercase;padding:6px 6px 8px 6px;}
-#nav li a:link,#nav li a:active,#nav li a:visited{color:#8cda58;}
-#nav li.current a{background:#fff;color:#222;border-right:#000 1px solid;}
+#head h1,#head h2{display:inline;}
+#head h1{font-weight:bold;}
+#head h2{color:#999;}
+ul{margin:0 0 10px 0;}
+ul li{list-style:none;padding:10px 0}
+ul li input,ul li select{width:100%;border:#aaa 3px solid;font-size:1em;padding:5px;}
+ul li h3{font-size:1.2em;font-weight:bold;}

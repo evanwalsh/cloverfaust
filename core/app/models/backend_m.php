@@ -140,14 +140,5 @@ class Backend_m extends Model {
 		$this->session->sess_destroy();
 		redirect();
 	}
-	function getThemes(){
-		// Gets all of the theme directories
-		$this->load->helper('directory');
-		$map = directory_map('views/themes', TRUE);
-		foreach($map as $theme){
-			$themes[$theme] = $theme;
-		}
-		return $themes;
-	}
 }
 ?>

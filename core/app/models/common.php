@@ -29,6 +29,12 @@ class Common extends Model{
 		// yeah. we're done with that. let's move on
 		if($view == "home"){
 			$data["pageTitle"] = "Home";
+			$this->db->limit(10);
+			$this->db->order_by("time","desc");
+			$query = $this->db->get("posts");
+			if($query->num_rows() > 0){
+				$data["posts"] = $query->result();
+			}
 		}
 		elseif($view == "forums"){
 			if(!empty($info["forums"])){
@@ -164,10 +170,10 @@ class Common extends Model{
 	function setFlash($type,$message){
 		// Sets the temporary flash message to be displayed to the user
 		if($type == "message"){
-			$output = '<div class="message">'.$message.'</div>';
+			$output = '<div id="message">'.$message.'</div>';
 		}
 		elseif($type == "error"){
-			$output = '<div class="error">'.$message.'</div>';
+			$output = '<div id="error">'.$message.'</div>';
 		}
 		$this->session->set_flashdata($type,$output);
 	}

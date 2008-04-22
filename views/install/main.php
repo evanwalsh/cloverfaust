@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<head>
-		<title>clvrfst installer</title>
+		<title>cloverfaust installer &#8250; the only step</title>
 		<link rel="stylesheet" href="<?=base_url()?>views/install/style.css"/>
 		<meta name="date-created" value="Tue Apr 15 15:47:25 EDT 2008"/>
 	</head>
 	<body>
 		<div id="wrap">
 			<div id="head">
-				<h1>clvrfst installer</h1>
+				<h1>cloverfaust installer</h1>
 				<h2>release 1</h2>
 			</div>
 			<div id="content">
@@ -37,8 +37,8 @@
 						<li><?=form_label("Username")?> <?=form_input("user")?></li>
 						<li><?=form_label("Password")?> <?=form_input("pass")?></li>
 						<li><?=form_label("Email")?> <?=form_input("email")?></li>
-						<li><?=form_label("Timezone")?> <?=timezone_menu()?><br/><br/>
-						<?=form_label("Editor")?> <?=form_dropdown("editor",array("textile" => "Textile","markdown" => "Markdown"))?></li>
+						<li><?=form_label("Timezone")?> <?=timezone_menu()?></li>
+						<li><?=form_label("Editor")?> <?=form_dropdown("editor",array("textile" => "Textile","markdown" => "Markdown"))?></li>
 					</ol>
 					
 					<?=form_submit("install","Install",'id="submit"')?>

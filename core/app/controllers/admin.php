@@ -35,11 +35,16 @@ class Admin extends Controller {
 	function edit(){
 		$this->m->edit();
 	}
-	function user(){
-		$this->m->yield("user");
-	}
 	function forum(){
 		$this->m->yield("forum");
+	}
+	function options(){
+		if(empty($_POST)){
+			$this->m->yield("options");
+		}
+		else{
+			$this->m->options();
+		}
 	}
 }
 ?>
