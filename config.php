@@ -1,9 +1,9 @@
 <?php if(!defined('BASEPATH'))exit();?>
 ---
 site: 
-    name: Test
+    name: Cloverfaust test
     subtitle: This is a test
-    theme: default
+    theme: faust
 database: 
     host: localhost
     user: root
@@ -12,3 +12,5 @@ database:
     prefix: 
 forums: 
     My forum: my-forum
+    Testing: testing
+    General: general
