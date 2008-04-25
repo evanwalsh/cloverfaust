@@ -1,6 +1,8 @@
 <?if($this->common->loggedIn() == false):?>
-<h3>Welcome to <?=$siteName?>!</h3>
-<p>Feel free to browse any of the various <?=anchor("show/forums","forums")?> or get started with posting by <?=anchor("show/signup","getting an account")?> or <?=anchor("show/login","logging in")?>.</p>
+<div id="greetz">
+	<h3>Welcome to <?=$siteName?>!</h3>
+	<p>Feel free to browse any of the various <?=anchor("show/forums","forums")?> or get started with posting by <?=anchor("show/signup","getting an account")?> or <?=anchor("show/login","logging in")?>.</p>
+</div>
 <?endif;?>
 <h3>Recent posts</h3>
 <ul id="recents">

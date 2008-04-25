@@ -2,9 +2,12 @@
 class Create_m extends Model{
 	function Create_m(){
 		parent::Model();
+		// TODO: Fix forum/post checking
 	}
 	function topic(){
 		$this->load->library('validation');
+		$this->load->library("Spyc");
+		$info = $this->spyc->load("config.php");
 		$rules["title"]	= "required";
 		$rules["body"] = "required";
 		$this->validation->set_error_delimiters(null,null);
@@ -14,7 +17,7 @@ class Create_m extends Model{
 		$url = url_title($title);
 		$forum = $this->uri->segment(3);
 		$this->validation->set_fields($rules);
-		if ($this->validation->run() == FALSE){
+		if($this->validation->run() == FALSE){
 			$this->setFlash("error",$this->validation->error_string);
 			redirect("create/post/$forum");
 		}
@@ -44,18 +47,19 @@ class Create_m extends Model{
 		);
 		$this->db->insert("posts",$data);
 		$this->common->setFlash("message","Post created");
-		redirect("show/forum/".$this->input->post("forum"));
+		redirect("show/topic/".$url);
 	}
 	function reply(){
-		// TODO $forum,$post
 		$this->load->library('validation');
+		$this->load->library("Spyc");
+		$info = $this->spyc->load("config.php");
 		$rules["body"] = "required";
 		$rules["forum"] = "required";
 		$rules["origauthor"] = "required";
 		$rules["post"] = "required";
 		$this->validation->set_error_delimiters(null,null);
 		$this->validation->set_rules($rules);
-		if ($this->validation->run() == FALSE){
+		if($this->validation->run() == FALSE || !in_array($this->input->post("forum"),$info["forums"])){
 			$this->common->setFlash("error",$this->validation->error_string);
 			redirect("create/reply/$forum");
 		}
@@ -69,7 +73,7 @@ class Create_m extends Model{
 		}
 		$data = array(
 			"title" => $this->input->post("title"),
-			"url" => $this->input->post("post"),
+			"url" => $this->uri->segment(3),
 			"author" => $this->session->userdata("id"),
 			"body" => $this->input->post("body"),
 			"conv_body" => $conv_body,

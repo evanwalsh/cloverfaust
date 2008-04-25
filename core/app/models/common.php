@@ -113,7 +113,7 @@ class Common extends Model{
 			$data["posts"] = $query2->result();
 		}
 		elseif($view == "reply"){
-			$query = $this->db->get_where("posts",array("url" => $this->uri->segment(4),"type" => "first"));
+			$query = $this->db->get_where("posts",array("url" => $this->uri->segment(3),"type" => "first"));
 			$data["origpost"] = $query->row();
 			$data["pageTitle"] = "Replying to \"".$data["origpost"]->title."\"";
 		}

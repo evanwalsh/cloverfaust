@@ -33,11 +33,10 @@ h3{font-size:1.2em;font-weight:bold;}
 #error{background:#CF1D1D;color:#fff;}
 #message{background:#222;color:#fff;}
 #footer{color:#777;margin:20px 0;}
-
+#greetz{border:#E79E31 2px dashed;padding:10px;margin:20px 0;}
 
 .listpost{margin:10px 0;}
 .listpost h3{display:inline;font-size:2em;}
-.listpost a:hover{color:#fff;}
 .post{margin:0 0 25px 0;}
 .post .body{display:block;margin:0 0 10px 0;}
 .post .data{list-style:none;margin:0 -2px 0 0;}
