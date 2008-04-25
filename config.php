@@ -1,8 +1,8 @@
 <?php if(!defined('BASEPATH'))exit();?>
 ---
 site: 
-    name: Cloverfaust test
-    subtitle: This is a test
+    name: Evan Walsh
+    subtitle: I can relate to your problems
     theme: faust
 database: 
     host: localhost
@@ -12,5 +12,3 @@ database:
     prefix: 
 forums: 
     My forum: my-forum
-    Testing: testing
-    General: general

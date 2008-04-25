@@ -59,7 +59,7 @@ class Create_m extends Model{
 		$rules["post"] = "required";
 		$this->validation->set_error_delimiters(null,null);
 		$this->validation->set_rules($rules);
-		if($this->validation->run() == FALSE || !in_array($this->input->post("forum"),$info["forums"])){
+		if($this->validation->run() == FALSE){
 			$this->common->setFlash("error",$this->validation->error_string);
 			redirect("create/reply/$forum");
 		}
