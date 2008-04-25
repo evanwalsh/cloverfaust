@@ -34,5 +34,8 @@ class Show extends Controller {
 	function signup(){
 		$this->common->yield("signup","guest");
 	}
+	function search(){
+		$this->common->yield("search");
+	}
 }
 ?>

@@ -15,5 +15,8 @@ class Edit extends Controller {
 			$this->m->post();
 		}
 	}
+	function account(){
+		$this->m->account();
+	}
 }
 ?>

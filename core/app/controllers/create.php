@@ -26,5 +26,8 @@ class Create extends Controller {
 	function forum(){
 		$this->m->forum();
 	}
+	function user(){
+		$this->m->user();
+	}
 }
 ?>

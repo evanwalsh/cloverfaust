@@ -46,6 +46,10 @@ class Create_m extends Model{
 			"origauthor" => $this->session->userdata("id")
 		);
 		$this->db->insert("posts",$data);
+		// $this->db->cache_delete("show","topic");
+		// $this->db->cache_delete("show","forum");
+		// $this->db->cache_delete("show","forums");
+		// $this->db->cache_delete("create","post");
 		$this->common->setFlash("message","Post created");
 		redirect("show/topic/".$url);
 	}
@@ -86,6 +90,11 @@ class Create_m extends Model{
 		$this->db->insert("posts",$data);
 		$this->db->where("url",$this->input->post("post"));
 		$this->db->update("posts",array("lastpost" => now()));
+		// $this->db->cache_delete("show","home");
+		// $this->db->cache_delete("show","topic");
+		// $this->db->cache_delete("show","forum");
+		// $this->db->cache_delete("show","forums");
+		// $this->db->cache_delete("create","reply");
 		redirect("show/topic/".$this->input->post("post"));
 	}
 	function forum(){
@@ -110,6 +119,32 @@ class Create_m extends Model{
 		}
 		else{
 			redirect();
+		}
+	}
+	function user(){
+		$rules['username'] = "required";
+		$rules['password'] = "required";
+		$rules['email'] = "required|valid_email";
+		$rules['timezones'] = "required";
+		$rules['editor'] = "required";
+		$this->validation->set_rules($rules);
+		if($this->validation->run() == FALSE){
+			$this->common->setFlash("error",$this->validation->error_string);
+			redirect("show/signup");
+		}
+		else{
+			$user = array(
+				"name" => $this->input->post("username"),
+				"password" => md5($this->input->post("password")),
+				"email" => $this->input->post("email"),
+				"group" => "0",
+				"timezone" => $this->input->post("timezones"),
+				"editor" => $this->input->post("editor"),
+				"joined" => now()
+			);
+			$this->db->insert("users",$user);
+			$this->common->setFlash("message","You're signed up! Now, login and get to posting!");
+			redirect("show/login");
 		}
 	}
 	function urlToTitle($url){

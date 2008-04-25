@@ -9,6 +9,15 @@
 	<body id="<?=$this->uri->segment(1).$this->uri->segment(2).$this->uri->segment(3)?>">
 		<div id="nav">
 			<ul>
+				<li id="search">
+					<?=form_open("show/search")?>
+						<?=form_input("search")?>
+						<?=form_submit("","search")?>
+					<?=form_close()?>
+				</li>
+				<?if($loggedIn == true):?>
+				<li>Logged in as: <?=$this->session->userdata("name")?></li>
+				<?endif;?>
 				<li><?=anchor("show/home","Home")?></li>
 				<?if($loggedIn == false):?>
 				<li><?=anchor("show/login","Login")?></li>

@@ -37,9 +37,11 @@ class Edit_m extends Model{
 		$newpass = $this->input->post("newpass");
 		$newpass2 = $this->input->post("newpassdeux");
 		$timezone = $this->input->post("timezones");
+		$editor = $this->input->post("editor");
 		$data = array(
 			"email" => $email,
-			"timezone" => $timezone
+			"timezone" => $timezone,
+			"editor" => $editor
 		);
 		if(!empty($newpass) && $newpass == $newpass2){
 			$data["password"] = md5($newpass);
@@ -47,7 +49,7 @@ class Edit_m extends Model{
 		$this->db->where("name",$user);
 		$this->db->update("users",$data);
 		$this->common->setFlash("message","Account details updated");
-		redirect("display/forums");
+		redirect("show/home");
 	}
 	function user(){
 		$id = $this->input->post("id");
@@ -74,8 +76,7 @@ class Edit_m extends Model{
 		$oldname = url_title($this->input->post("oldname"));
 		$this->db->where("forum",$oldname);
 		$this->db->update("posts",array("forum" => url_title($newname)));
-		$this->db->where("url",$oldname);
-		$this->db->update("forums",array("name" => $newname,"url" => url_title($newname)));
+		
 		redirect("admin/forums");
 	}
 }

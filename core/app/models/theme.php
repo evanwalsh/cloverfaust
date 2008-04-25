@@ -45,7 +45,7 @@ class Theme extends Model {
 		if(empty($text)){
 			$text = ucwords($type);
 		}
-		if($this->common->getGroup() == 1 && $this->session->userdata("id") == $author || $this->session->userdata("id") == $author){
+		if($this->common->getGroup() == 1 || $this->session->userdata("id") == $author){
 			$output = $before;
 			$output .= anchor("$type/post/".$id,$text,array("class" => $type."link","id" => $type."$id"));
 			$output .= $after;
@@ -53,6 +53,7 @@ class Theme extends Model {
 		}
 	}
 	function getAuthor($id){
+		// $this->db->cache_on();
 		$this->db->where("id",$id);
 		$query = $this->db->get("users");
 		if($query->num_rows() > 0){
@@ -62,6 +63,7 @@ class Theme extends Model {
 			$output->name = '<span style="color:red">author not found</span>';
 		}
 		return $output->name;
+		// $this->db->cache_off();
 	}
 	function postDate($time,$format = "%M %d %Y %h:%i%a"){
 		$timezone = $this->session->userdata("timezone");

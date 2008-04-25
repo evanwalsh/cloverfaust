@@ -10,7 +10,7 @@
 	<li class="<?=$post->type?>">
 		<img src="<?=base_url()?>views/themes/faust/img/<?=$post->type?>.gif"/>
 		<?=$this->theme->getAuthor($post->author)?> <?=($post->type == "first") ? "posted" : "replied to"?> <?=anchor("show/topic/".$post->url."#post".$post->id,$post->title)?>
-		<span class="time"><?=timespan($post->time,$this->theme->postDate(now()))?> ago</span>
+		<span class="time"><?=timespan($post->time,gmt_to_local($time,$this->session->userdata("timezone")))?> ago</span>
 	</li>
 <?endforeach;?>
 </ul>

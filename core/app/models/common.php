@@ -6,12 +6,6 @@ class Common extends Model{
 	}
 	function yield($view,$access = false){
 		// TODO: Author caching
-		if($access == "guest" && $this->loggedIn() == true){
-			redirect("show/home");
-		}
-		elseif($access == "user" && $this->loggedIn() == false){
-			redirect("show/signup");
-		}
 		$this->load->library("Spyc");
 		$info = $this->spyc->load("config.php"); // yaml <3
 		$data["siteName"] = $info["site"]["name"];
@@ -19,6 +13,12 @@ class Common extends Model{
 		$data["theme"] = $info["site"]["theme"];
 		$data["help"] = $info["site"]["help"];
 		$data["loggedIn"] = $this->loggedIn(); // saves some db queries
+		if($access == "guest" && $data["loggedIn"] == true){
+			redirect("show/home");
+		}
+		elseif($access == "user" && $data["loggedIn"] == false){
+			redirect("show/signup");
+		}
 		// error/message handling
 		$data["message"] = null;
 		$data["error"] = null;
@@ -31,7 +31,6 @@ class Common extends Model{
 			$data["error"] = $flashError;
 		}
 		// yeah. we're done with that. let's move on
-		// TODO: Page title fixing, could this be done easier
 		if($view == "home"){
 			$data["pageTitle"] = $data["siteSubtitle"];
 			$this->db->limit(10);
@@ -43,7 +42,6 @@ class Common extends Model{
 		}
 		elseif($view == "forums"){
 			if(!empty($info["forums"])){
-				$this->db->cache_on();
 				$data["forums"] = $info["forums"];
 			}
 			else{
@@ -115,7 +113,7 @@ class Common extends Model{
 		elseif($view == "reply"){
 			$query = $this->db->get_where("posts",array("url" => $this->uri->segment(3),"type" => "first"));
 			$data["origpost"] = $query->row();
-			$data["pageTitle"] = "Replying to \"".$data["origpost"]->title."\"";
+			$data["pageTitle"] = "Replying to: ".$data["origpost"]->title;
 		}
 		elseif($view == "post"){
 			$forum = $this->uri->segment(3);

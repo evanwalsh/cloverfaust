@@ -111,18 +111,11 @@ class Backend_m extends Model {
 		}
 	}
 	function delete(){
-		if($this->klei->getGroup() == "1"){
+		if($this->common->getGroup() == "1"){
 			$sec = $this->uri->segment(3);
 			$id = $this->uri->segment(4);
 			if(empty($id)){
 				redirect("admin");
-			}
-			if($sec == "forum"){
-				$this->db->where("forum",$id);
-				$this->db->delete("posts");
-				$this->db->where("url",$id);
-				$this->db->delete("forums");
-				redirect("admin/forums");
 			}
 			if($sec == "user"){
 				$this->db->where("id",$id);

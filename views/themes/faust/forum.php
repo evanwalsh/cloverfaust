@@ -6,7 +6,8 @@
 	<?foreach($posts as $post):?>
 		<li class="listpost">
 			<h3><?=anchor("show/topic/".$post->url,$post->title)?></h3>			
-			<h4>by <?=$this->theme->getAuthor($post->author)?> - <?=$this->theme->postStats($post->url,"replies")?></h4>
+			<h4>by <?=$this->theme->getAuthor($post->author)?></h4>
+			<h5><?=$this->theme->postStats($post->url,"replies")?> / Last reply on <?=$this->theme->postDate($post->lastpost)?></h5>
 		</li>
 	<?endforeach;?>
 	</ol>
