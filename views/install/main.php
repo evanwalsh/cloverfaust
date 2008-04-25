@@ -13,7 +13,7 @@
 			</div>
 			<div id="content">
 			
-				<?=$this->validation->error_string; ?>
+				<?=$this->validation->error_string;?>
 				
 				<?=form_open("install/go")?>
 					

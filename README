@@ -1,3 +1,22 @@
-clvrfst is currently not fit for use.  Don't even try yet.
+Cloverfaust is the forum app designed and developed by Evan Walsh
 
-Needs a search engine.  And some decent themes! Seriously!  And do some prefixes on the DB.
+It is powered by CodeIgniter: http://codeigniter.com/
+
+Server requirements:
+	
+	- PHP 4/5
+	- MySQL
+	- Magic :]
+
+To install Cloverfaust, follow these instructions:
+
+	- Upload all the files contained in this release, including
+	  .htaccess, core/, index.php, license.txt, user_guide/, and views/
+	
+	- Navigate to the place where Cloverfaust was uploaded with your
+	  web browser.  Example: http://example.com/cloverfaust/
+	
+	- Cloverfaust will automatically load the installer and you must now
+	  enter all your site's details to continue
+	
+	- You're done!

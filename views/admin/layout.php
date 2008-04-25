@@ -12,6 +12,8 @@
 		</div>
 		<div id="wrap">
 			<div id="content">
+				<?=$message?>
+				<?=$error?>
 				<?=$yield?>
 			</div>
 			<div id="footer">

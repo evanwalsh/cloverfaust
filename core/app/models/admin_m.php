@@ -47,6 +47,7 @@ class Admin_m extends Model {
 			}
 			$data["themes"] = $themes;
 			$data["pageTitle"] = "Options";
+			$data["siteTheme"] = $info["site"]["theme"];
 		}
 		if($view == "forums"){
 			$this->load->model("theme");
@@ -55,6 +56,23 @@ class Admin_m extends Model {
 		}
 		$data["yield"] = $this->load->view("admin/$view",$data,true);
 		$this->load->view("admin/layout",$data);
+	}
+	function options(){
+		$config = $this->getConfig();
+		$config["site"]["name"] = $this->input->post("name");
+		$config["site"]["subtitle"] = $this->input->post("subtitle");
+		$config["site"]["theme"] = $this->input->post("theme");
+		$done = $this->spyc->dump($config,4);
+		$handle = fopen("config.php","w");
+		$output = "<?php if(!defined('BASEPATH'))exit();?>\n$done";
+		fwrite($handle,$output);
+		fclose($handle);
+		$this->common->setFlash("message","Options saved");
+		redirect("admin/options");
+	}
+	function getConfig(){
+		$this->load->library("Spyc");
+		return $this->spyc->load("config.php");
 	}
 	function getThemes(){
 		// Gets all of the theme directories

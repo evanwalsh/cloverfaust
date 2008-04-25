@@ -2,8 +2,10 @@
 class Common extends Model{
 	function Common(){
 		parent::model();
+		// $this->output->enable_profiler(TRUE); // debug :]
 	}
 	function yield($view,$access = false){
+		// TODO: Author caching
 		if($access == "guest" && $this->loggedIn() == true){
 			redirect("show/home");
 		}
@@ -11,10 +13,12 @@ class Common extends Model{
 			redirect("show/signup");
 		}
 		$this->load->library("Spyc");
-		$info = $this->spyc->load("config.php");
+		$info = $this->spyc->load("config.php"); // yaml <3
 		$data["siteName"] = $info["site"]["name"];
 		$data["siteSubtitle"] = $info["site"]["subtitle"];
 		$data["theme"] = $info["site"]["theme"];
+		$data["help"] = $info["site"]["help"];
+		$data["loggedIn"] = $this->loggedIn(); // saves some db queries
 		// error/message handling
 		$data["message"] = null;
 		$data["error"] = null;
@@ -27,8 +31,9 @@ class Common extends Model{
 			$data["error"] = $flashError;
 		}
 		// yeah. we're done with that. let's move on
+		// TODO: Page title fixing, could this be done easier
 		if($view == "home"){
-			$data["pageTitle"] = "Home";
+			$data["pageTitle"] = $data["siteSubtitle"];
 			$this->db->limit(10);
 			$this->db->order_by("time","desc");
 			$query = $this->db->get("posts");
@@ -156,16 +161,11 @@ class Common extends Model{
 		elseif($view == "signup"){
 			$data["pageTitle"] = "Signup";
 		}
+		elseif($view == "help"){
+			$data["pageTitle"] = "Help";
+		}
 		$data["yield"] = $this->load->view("themes/$data[theme]/$view",$data,true);
 		$this->load->view("themes/$data[theme]/layout",$data);
-	}
-	function getOption($opt){
-		// Gets a site option from the database
-		$this->db->cache_on();
-		$query = $this->db->query("SELECT value FROM options WHERE `name` = '$opt'");
-		$output = $query->row();
-		$output = $output->value;
-		return $output;
 	}
 	function setFlash($type,$message){
 		// Sets the temporary flash message to be displayed to the user
@@ -177,9 +177,18 @@ class Common extends Model{
 		}
 		$this->session->set_flashdata($type,$output);
 	}
-	function getGroup(){
+	function getGroup($conv = false){
 		// Gets the usergroup of the current user
-		return $this->session->userdata("group");
+		$group = $this->session->userdata("group");
+		if($conv == true){
+			if($group == 0){
+				$group = "guest";
+			}
+			if($group == 1){
+				$group = "admin";
+			}
+		}
+		return $group;
 	}
 	function loggedIn(){
 		// Checks to see if the person is logged in or not

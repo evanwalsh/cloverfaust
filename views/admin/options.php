@@ -1,3 +1,4 @@
+<?=form_open("admin/options")?>
 <ul>
 	<li>
 		<h3>Site name</h3>
@@ -9,10 +10,14 @@
 	</li>
 	<li>
 		<h3>Theme</h3>
-		<select name="themes" id="themes">
+		<select name="theme" id="themes">
 		<?foreach($themes as $theme => $var):?>
-			<option value="<?=$theme?>"><?=$var["name"]?> <?=$var["version"]?> by <?=$var["author"]?></option>
+			<option value="<?=$theme?>"<?if($siteTheme == $theme) echo ' selected="selected"'?>><?=$var["name"]?> <?=$var["version"]?> by <?=$var["author"]?></option>
 		<?endforeach;?>
 		</select>
 	</li>
+	<li>
+		<?=form_submit("go","Save options")?>
+	</li>
 </ul>
+<?=form_close()?>

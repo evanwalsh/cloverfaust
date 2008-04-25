@@ -20,18 +20,24 @@ class Install extends Controller {
 		$rules['db'] = "required";
 		$this->validation->set_rules($rules);
 		if($this->validation->run() == FALSE){
-			redirect("install/main");
+			$this->load->view("install/main");
 		}
 		else{
 			$config["site"]["name"] = $this->input->post("name");
 			$config["site"]["subtitle"] = $this->input->post("subtitle");
-			$config["site"]["theme"] = "default";
+			$config["site"]["theme"] = "faust";
 			$config["database"]["host"] = $this->input->post("dbhost");
 			$config["database"]["user"] = $this->input->post("dbuser");
 			$config["database"]["pass"] = $this->input->post("dbpass");
 			$config["database"]["db"] = $this->input->post("db");
 			$config["database"]["prefix"] = $this->input->post("dbprefix");
 			$config["forums"]["My forum"] = url_title("My forum");
+			$done = $this->spyc->dump($config,4);
+			$handle = fopen("config.php","w");
+			$output = "<?php if(!defined('BASEPATH'))exit();?>\n$done";
+			fwrite($handle,$output);
+			fclose($handle);
+			sleep(1);
 			$user = array(
 				"name" => $this->input->post("user"),
 				"password" => md5($this->input->post("pass")),
@@ -40,12 +46,6 @@ class Install extends Controller {
 				"timezone" => $this->input->post("timezones"),
 				"editor" => $this->input->post("editor")
 			);
-			$done = $this->spyc->dump($config,4);
-			$handle = fopen("config.php","w");
-			$output = "<?php if(!defined('BASEPATH'))exit();?>\n$done";
-			fwrite($handle,$output);
-			fclose($handle);
-			sleep(1);
 			$postTable = 'CREATE TABLE IF NOT EXISTS `'.$this->input->post("dbprefix").'posts` (
 			  `id` int(11) NOT NULL auto_increment,
 			  `title` varchar(500) NOT NULL,

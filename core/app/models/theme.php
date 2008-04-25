@@ -46,7 +46,10 @@ class Theme extends Model {
 			$text = ucwords($type);
 		}
 		if($this->common->getGroup() == 1 && $this->session->userdata("id") == $author || $this->session->userdata("id") == $author){
-			return $before.anchor("$type/post/".$id,$text,array("class" => $type."link","id" => $type."$id")).$after;
+			$output = $before;
+			$output .= anchor("$type/post/".$id,$text,array("class" => $type."link","id" => $type."$id"));
+			$output .= $after;
+			return $output;
 		}
 	}
 	function getAuthor($id){

@@ -8,7 +8,7 @@ class Admin extends Controller {
 		redirect("admin/home");
 	}
 	function home(){
-		$this->m->yield("main");
+		$this->m->yield("home");
 	}
 	function forums(){
 		$this->m->yield("forums");
