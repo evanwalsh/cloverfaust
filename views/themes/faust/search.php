@@ -6,7 +6,8 @@
 <div class="post" id="post<?=$post->id?>">
 	<div class="listpost">
 		<?$type = ($post->type == "first")? "posted" : "replied to"?>
-		<h3><?=$this->theme->getAuthor($post->author)?> <?=anchor("show/topic/".$post->url."#post".$post->id,"$type topic '".$post->title."'")?></h3>
+		<h3><?=$this->theme->getAuthor($post->author)?> <?=anchor("show/topic/".$post->url."#post".$post->id,"$type topic '".$post->title."'")?></h3><br/>
+		<h4><?=$this->theme->postDate($post->time)?></h4>
 	</div>
 </div>
 <?endforeach;?>

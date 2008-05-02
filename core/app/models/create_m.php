@@ -68,12 +68,11 @@ class Create_m extends Model{
 			redirect("create/reply/$forum");
 		}
 		if($this->session->userdata("editor") == "textile"){
-			$this->load->library("Textile");
-			$conv_body = $this->textile->TextileThis($this->input->post("body"));
+			$this->load->library("Textilite");
+			$conv_body = $this->textilite->process($this->input->post("body"));
 		}
-		elseif($this->session->userdata("editor") == "markdown"){
-			$this->load->library("Markdown");
-			$conv_body = $this->markdown->transform($this->input->post("body"));
+		elseif($this->session->userdata("editor") == "html"){
+			$conv_body = strip_tags($this->input->post("body"),$info["allowed-tags"]);
 		}
 		$data = array(
 			"title" => $this->input->post("title"),
@@ -90,12 +89,7 @@ class Create_m extends Model{
 		$this->db->insert("posts",$data);
 		$this->db->where("url",$this->input->post("post"));
 		$this->db->update("posts",array("lastpost" => now()));
-		// $this->db->cache_delete("show","home");
-		// $this->db->cache_delete("show","topic");
-		// $this->db->cache_delete("show","forum");
-		// $this->db->cache_delete("show","forums");
-		// $this->db->cache_delete("create","reply");
-		redirect("show/topic/".$this->input->post("post"));
+		redirect("topic/".$this->input->post("post"));
 	}
 	function forum(){
 		if($this->common->getGroup() == 1){
@@ -104,7 +98,9 @@ class Create_m extends Model{
 				$url = url_title($name);
 				$this->load->library("Spyc");
 				$conf = $this->spyc->load("config.php");
-				$conf["forums"][$name] = $url;
+				$count = count($conf["forums"]);
+				$conf["forums"][$count+1] = $name."@".$url;
+				$conf["forums"] = array_unique($conf["forums"]);
 				$done = $this->spyc->dump($conf,4);
 				$handle = fopen("config.php","w");
 				$output = "<?php if(!defined('BASEPATH'))exit();?>\n$done";

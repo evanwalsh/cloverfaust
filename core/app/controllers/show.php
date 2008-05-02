@@ -5,7 +5,7 @@ class Show extends Controller {
 		//$this->output->enable_profiler(true);
 	}
 	function index(){
-		redirect("show/home");
+		redirect("home");
 	}
 	function home(){
 		$this->common->yield("home");

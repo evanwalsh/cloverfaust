@@ -26,17 +26,19 @@ class Admin extends Controller {
 	}
 	function delete(){
 		if(empty($_POST)){
-			$this->m->yield("create");
+			$this->m->yield("delete");
 		}
 		else{
-			$this->m->create();
+			$this->m->delete();
 		}
 	}
 	function edit(){
-		$this->m->edit();
-	}
-	function forum(){
-		$this->m->yield("forum");
+		if(empty($_POST)){
+			$this->m->yield("edit");
+		}
+		else{
+			$this->m->edit();
+		}
 	}
 	function options(){
 		if(empty($_POST)){

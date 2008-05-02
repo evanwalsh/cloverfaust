@@ -31,5 +31,49 @@ class Delete_m extends Model {
 			}
 		}
 	}
+	function forum(){
+		if($this->common->getGroup() == "1"){
+			$id = $this->uri->segment(3);
+			if(empty($id)){
+				redirect("admin");
+			}
+			else{
+				$config = $this->common->getConfig();
+				$name = array_search($id,$config["forums"]);
+				unset($config["forums"][$name]);
+				$done = $this->spyc->dump($config,4);
+				$handle = fopen("config.php","w");
+				$output = "<?php if(!defined('BASEPATH'))exit();?>\n$done";
+				fwrite($handle,$output);
+				fclose($handle);
+				$this->db->where("forum",$id);
+				$this->db->delete("posts");
+				$this->common->setFlash("message","$name and all its posts deleted");
+				redirect("admin/forums");
+			}
+		}
+		else{
+			redirect();
+		}
+	}
+	function user(){
+		if($this->common->getGroup() == "1"){
+			$sec = $this->uri->segment(3);
+			$id = $this->uri->segment(4);
+			if(empty($id)){
+				redirect("admin");
+			}
+			else{
+				$this->db->where("id",$id);
+				$this->db->delete("users");
+				$this->db->where("author",$id);
+				$this->db->delete("posts");
+				redirect("admin/users");
+			}
+		}
+		else{
+			redirect();
+		}
+	}
 }
 ?>

@@ -18,5 +18,8 @@ class Edit extends Controller {
 	function account(){
 		$this->m->account();
 	}
+	function forum(){
+		$this->m->forum();
+	}
 }
 ?>

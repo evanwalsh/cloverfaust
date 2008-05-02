@@ -3,9 +3,12 @@
 	<head>
 		<title><?=$siteName?> admin &#8250; <?=$pageTitle?></title>
 		<link rel="stylesheet" href="<?=base_url()?>views/admin/css/style.css"/>
-		<meta name="date-created" value="Sun Apr 20 17:42:04 EDT 2008"/>
+		<script src="<?=base_url()?>views/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<?=base_url()?>views/js/ui/ui.base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<?=base_url()?>views/js/ui/ui.sortable.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<?=base_url()?>views/admin/js/main.js" type="text/javascript" charset="utf-8"></script>
 	</head>
-	<body>
+	<body id="<?=$this->uri->segment(2).$this->uri->segment(3)?>">
 		<div id="head">
 			<h1><?=$siteName?></h1>
 			<h2>admin</h2>

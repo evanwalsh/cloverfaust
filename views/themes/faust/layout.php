@@ -6,7 +6,7 @@
 		<script src="<?=base_url()?>views/js/jquery.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<?=base_url()?>views/themes/<?=$theme?>/js/main.js" type="text/javascript" charset="utf-8"></script>
 	</head>
-	<body id="<?=$this->uri->segment(1).$this->uri->segment(2).$this->uri->segment(3)?>">
+	<body id="<?=$this->uri->segment(1).$this->uri->segment(2)?>">
 		<div id="nav">
 			<ul>
 				<li id="search">
@@ -18,17 +18,17 @@
 				<?if($loggedIn == true):?>
 				<li>Logged in as: <?=$this->session->userdata("name")?></li>
 				<?endif;?>
-				<li><?=anchor("show/home","Home")?></li>
+				<li><?=anchor("home","Home")?></li>
 				<?if($loggedIn == false):?>
-				<li><?=anchor("show/login","Login")?></li>
-				<li><?=anchor("show/signup","Sign up")?></li>
+				<li><?=anchor("login","Login")?></li>
+				<li><?=anchor("signup","Sign up")?></li>
 				<?endif;?>
-				<li><?=anchor("show/forums","Forums")?></li>
+				<li><?=anchor("forums","Forums")?></li>
 				<?if($loggedIn == true):?>
-				<li><?=anchor("show/account","Account")?></li>
+				<li><?=anchor("account","Account")?></li>
 				<li><?=anchor("backend/logout","Logout")?></li>
 				<?endif;?>
-				<li><?=anchor("show/help","Help")?></li>
+				<li><?=anchor("help","Help")?></li>
 				<?if($this->common->getGroup() == 1):?>
 				<li><?=anchor("admin","Admin")?></li>
 				<?endif;?>

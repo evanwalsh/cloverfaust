@@ -42,5 +42,13 @@
 
 $route['default_controller'] = "show";
 $route['scaffolding_trigger'] = "";
+$route['home'] = "show/home";
+$route['login'] = "show/login";
+$route['signup'] = "show/signup";
+$route['help'] = "show/help";
+$route['account'] = "show/account";
+$route['forums'] = "show/forums";
+$route['forum/:any'] = "show/forum/";
+$route['topic/:any'] = "show/topic";
 
 ?>

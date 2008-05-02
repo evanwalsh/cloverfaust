@@ -53,7 +53,6 @@ class Theme extends Model {
 		}
 	}
 	function getAuthor($id){
-		// $this->db->cache_on();
 		$this->db->where("id",$id);
 		$query = $this->db->get("users");
 		if($query->num_rows() > 0){
@@ -63,7 +62,6 @@ class Theme extends Model {
 			$output->name = '<span style="color:red">author not found</span>';
 		}
 		return $output->name;
-		// $this->db->cache_off();
 	}
 	function postDate($time,$format = "%M %d %Y %h:%i%a"){
 		$timezone = $this->session->userdata("timezone");

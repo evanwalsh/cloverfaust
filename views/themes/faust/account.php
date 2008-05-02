@@ -8,7 +8,7 @@
 	<p><?=form_label("Your timezone")?>
 	<p><?=timezone_menu($user->timezone)?></p>
 	<p><?=form_label("Your editor of choice")?></p>
-	<p><?=form_dropdown("editor",array("textile" => "Textile","markdown" => "Markdown"),$user->editor)?></p>
+	<p><?=form_dropdown("editor",array("textile" => "Textile","html" => "Raw HTML"),$user->editor)?></p>
 	<p><?=form_label("&nbsp;")?></p>
 	<p><?=form_submit("","Change")?></p>
 <?=form_close()?>

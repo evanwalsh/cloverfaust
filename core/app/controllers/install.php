@@ -23,21 +23,26 @@ class Install extends Controller {
 			$this->load->view("install/main");
 		}
 		else{
+			$this->load->helper("string");
 			$config["site"]["name"] = $this->input->post("name");
 			$config["site"]["subtitle"] = $this->input->post("subtitle");
 			$config["site"]["theme"] = "faust";
+			$config["site"]["per-page"] = 10;
+			$config["site"]["rss"] = "yes";
+			$config["site"]["allowed-tags"] = "<p><a><strong><em><br>";
+			$config["site"]["encryption-key"] = random_string('unique');
 			$config["database"]["host"] = $this->input->post("dbhost");
 			$config["database"]["user"] = $this->input->post("dbuser");
 			$config["database"]["pass"] = $this->input->post("dbpass");
 			$config["database"]["db"] = $this->input->post("db");
 			$config["database"]["prefix"] = $this->input->post("dbprefix");
-			$config["forums"]["My forum"] = url_title("My forum");
+			$config["forums"][] = "My Forum@".url_title("My forum");
 			$done = $this->spyc->dump($config,4);
 			$handle = fopen("config.php","w");
 			$output = "<?php if(!defined('BASEPATH'))exit();?>\n$done";
 			fwrite($handle,$output);
 			fclose($handle);
-			sleep(1);
+			sleep(1); // The file won't write without this
 			$user = array(
 				"name" => $this->input->post("user"),
 				"password" => md5($this->input->post("pass")),

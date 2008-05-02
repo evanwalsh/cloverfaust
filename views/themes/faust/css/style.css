@@ -21,7 +21,7 @@ h3{font-size:1.2em;font-weight:bold;}
 #nav a:hover,#recents a:hover{color:#2796C2;}
 #nav form{display:inline;}
 #content{overflow:hidden;}
-#showhome #content h3{font-size:1.5em;margin-bottom:10px;}
+#home #content h3{font-size:1.5em;margin-bottom:10px;}
 #recents li{background:#111;padding:4px;font-size:1em;margin:0 0 10px 0;color:#fff;}
 #recents li img{margin-bottom:-3px;}
 #recents li.first{border-left:#174f70 10px solid;}

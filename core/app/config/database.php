@@ -43,14 +43,14 @@ $active_record = TRUE;
  
 $ci =& get_instance(); // gets $this, basically
 $ci->load->library("Spyc"); // loads yaml parser
-$info = $ci->spyc->load("config.php"); // gets config :]
+$conf = $ci->spyc->load("config.php"); // gets config :]
 
-$db['default']['hostname'] = $info["database"]["host"];
-$db['default']['username'] = $info["database"]["user"];
-$db['default']['password'] = $info["database"]["pass"];
-$db['default']['database'] = $info["database"]["db"];
+$db['default']['hostname'] = $conf["database"]["host"];
+$db['default']['username'] = $conf["database"]["user"];
+$db['default']['password'] = $conf["database"]["pass"];
+$db['default']['database'] = $conf["database"]["db"];
 $db['default']['dbdriver'] = "mysql";
-$db['default']['dbprefix'] = $info["database"]["prefix"];
+$db['default']['dbprefix'] = $conf["database"]["prefix"];
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;

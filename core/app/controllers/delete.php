@@ -10,5 +10,8 @@ class Delete extends Controller {
 	function post(){
 		$this->m->post();
 	}
+	function forum(){
+		$this->m->forum();
+	}
 }
 ?>

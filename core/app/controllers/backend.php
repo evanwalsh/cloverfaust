@@ -10,8 +10,5 @@ class Backend extends Controller {
 	function logout(){
 		$this->m->logout();
 	}
-	function nocache(){
-		$this->db->cache_delete_all();
-	}
 }
 ?>
