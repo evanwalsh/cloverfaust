@@ -17,29 +17,35 @@
 				
 				<?=form_open("install/go")?>
 					
-					<h3>Site</h3>
-					<ol>
-						<li><?=form_label("Name")?> <?=form_input("name")?></li>
-						<li><?=form_label("Subtitle")?> <?=form_input("subtitle")?></li>
-					</ol>
+					<div id="site">
+						<h3>Site</h3>
+						<ol>
+							<li><?=form_label("Name")?> <?=form_input("name")?></li>
+							<li><?=form_label("Subtitle")?> <?=form_input("subtitle")?></li>
+						</ol>
+					</div>
 
-					<h3>Database</h3>
-					<ol>
-						<li><?=form_label("Host")?> <?=form_input("dbhost","localhost")?></li>
-						<li><?=form_label("Username")?> <?=form_input("dbuser")?></li>
-						<li><?=form_label("Password")?> <?=form_input("dbpass")?></li>
-						<li><?=form_label("Database name")?> <?=form_input("db")?></li>
-						<li><?=form_label("Prefix")?> <?=form_input("dbprefix","cf_")?></li>
-					</ol>
+					<div id="db">
+						<h3>Database</h3>
+						<ol>
+							<li><?=form_label("Host")?> <?=form_input("dbhost","localhost")?></li>
+							<li><?=form_label("Username")?> <?=form_input("dbuser")?></li>
+							<li><?=form_label("Password")?> <?=form_input("dbpass")?></li>
+							<li><?=form_label("Database name")?> <?=form_input("db")?></li>
+							<li><?=form_label("Prefix")?> <?=form_input("dbprefix","cf_")?></li>
+						</ol>
+					</div>
 
-					<h3>Admin user</h3>
-					<ol>
-						<li><?=form_label("Username")?> <?=form_input("user")?></li>
-						<li><?=form_label("Password")?> <?=form_input("pass")?></li>
-						<li><?=form_label("Email")?> <?=form_input("email")?></li>
-						<li><?=form_label("Timezone")?> <?=timezone_menu()?></li>
-						<li><?=form_label("Editor")?> <?=form_dropdown("editor",array("textile" => "Textile","html" => "Raw html"))?></li>
-					</ol>
+					<div id="admin">
+						<h3>Admin user</h3>
+						<ol>
+							<li><?=form_label("Username")?> <?=form_input("user")?></li>
+							<li><?=form_label("Password")?> <?=form_input("pass")?></li>
+							<li><?=form_label("Email")?> <?=form_input("email")?></li>
+							<li><?=form_label("Timezone")?> <?=timezone_menu()?></li>
+							<li><?=form_label("Editor")?> <?=form_dropdown("editor",array("textile" => "Textile","html" => "Raw html"))?></li>
+						</ol>
+					</div>
 					
 					<?=form_submit("install","Install",'id="submit"')?>
 

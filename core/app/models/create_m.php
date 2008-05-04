@@ -25,13 +25,12 @@ class Create_m extends Model{
 		if($query->num_rows() > 0){
 			$url = $url."-".now();
 		}
-		if($this->session->userdata("editor") == "textile"){
-			$this->load->library("Textile");
-			$conv_body = $this->textile->TextileThis($body);
+		if($this->session->userdata("editor") == "textile" || $this->session->userdata("editor") == null){
+			$this->load->library("Textilite");
+			$conv_body = $this->textilite->process($this->input->post("body"));
 		}
-		elseif($this->session->userdata("editor") == "markdown"){
-			$this->load->library("Markdown");
-			$conv_body = $this->markdown->transform($body);
+		elseif($this->session->userdata("editor") == "html"){
+			$conv_body = strip_tags($this->input->post("body"),$info["site"]["allowed-tags"]);
 		}
 		$data = array(
 			"title" => $title,
@@ -46,12 +45,8 @@ class Create_m extends Model{
 			"origauthor" => $this->session->userdata("id")
 		);
 		$this->db->insert("posts",$data);
-		// $this->db->cache_delete("show","topic");
-		// $this->db->cache_delete("show","forum");
-		// $this->db->cache_delete("show","forums");
-		// $this->db->cache_delete("create","post");
 		$this->common->setFlash("message","Post created");
-		redirect("show/topic/".$url);
+		redirect("topic/".$url);
 	}
 	function reply(){
 		$this->load->library('validation');
@@ -67,12 +62,12 @@ class Create_m extends Model{
 			$this->common->setFlash("error",$this->validation->error_string);
 			redirect("create/reply/$forum");
 		}
-		if($this->session->userdata("editor") == "textile"){
+		if($this->session->userdata("editor") == "textile" || $this->session->userdata("editor") == null){
 			$this->load->library("Textilite");
 			$conv_body = $this->textilite->process($this->input->post("body"));
 		}
 		elseif($this->session->userdata("editor") == "html"){
-			$conv_body = strip_tags($this->input->post("body"),$info["allowed-tags"]);
+			$conv_body = strip_tags($this->input->post("body"),$info["site"]["allowed-tags"]);
 		}
 		$data = array(
 			"title" => $this->input->post("title"),
@@ -106,6 +101,7 @@ class Create_m extends Model{
 				$output = "<?php if(!defined('BASEPATH'))exit();?>\n$done";
 				fwrite($handle,$output);
 				fclose($handle);
+				$this->common->setFlash("message","$name created");
 				redirect("admin/forums");
 			}
 			else{

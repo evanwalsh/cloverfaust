@@ -97,7 +97,6 @@ class Edit_m extends Model{
 			$config["forums"] = array_unique($config["forums"]);
 			$key = array_search($oldname."@".url_title($oldname),$config["forums"]);
 			$config["forums"]["$key"] = $newname."@".url_title($newname);
-			print_r($config);
 			$done = $this->spyc->dump($config,4);
 			$handle = fopen("config.php","w");
 			$output = "<?php if(!defined('BASEPATH'))exit();?>\n$done";
@@ -106,7 +105,7 @@ class Edit_m extends Model{
 			$this->db->where("forum",url_title($oldname));
 			$this->db->update("posts",array("forum" => url_title($newname)));
 			$this->common->setFlash("message","Forum edited");
-			// redirect("admin/forums");
+			redirect("admin/forums");
 		}
 		else{
 			redirect();

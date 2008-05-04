@@ -6,6 +6,7 @@
 <?endif;?>
 <h3>Recent posts</h3>
 <ul id="recents">
+<?if(is_array($posts)):?>
 <?foreach($posts as $post):?>
 	<li class="<?=$post->type?>">
 		<img src="<?=base_url()?>views/themes/faust/img/<?=$post->type?>.gif"/>
@@ -13,4 +14,7 @@
 		<span class="time"><?=timespan($post->time,gmt_to_local($time,$this->session->userdata("timezone")))?> ago</span>
 	</li>
 <?endforeach;?>
+<?else:?>
+<p>No recents posts</p>
+<?endif;?>
 </ul>

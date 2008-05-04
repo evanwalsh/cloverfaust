@@ -4,11 +4,12 @@ $(document).ready(function(){
 	$("#message,#error").click(function(){
 		$(this).fadeOut(500);
 	});
-	$("#forums ul").sortable({  
+	$("#forums").sortable({  
 		revert: true, 
 		containment: '#forums',
 		opacity: 0.8,
 		axis: 'x',
-		placeholder: 'placehold'
+		placeholder: 'placehold',
+		handle: 'img'
 	});
 });

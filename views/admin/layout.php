@@ -8,7 +8,7 @@
 		<script src="<?=base_url()?>views/js/ui/ui.sortable.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<?=base_url()?>views/admin/js/main.js" type="text/javascript" charset="utf-8"></script>
 	</head>
-	<body id="<?=$this->uri->segment(2).$this->uri->segment(3)?>">
+	<body id="body_<?=$this->uri->segment(2).$this->uri->segment(3)?>">
 		<div id="head">
 			<h1><?=$siteName?></h1>
 			<h2>admin</h2>

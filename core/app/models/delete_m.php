@@ -39,8 +39,14 @@ class Delete_m extends Model {
 			}
 			else{
 				$config = $this->common->getConfig();
-				$name = array_search($id,$config["forums"]);
-				unset($config["forums"][$name]);
+				foreach($config["forums"] as $key => $val){
+					$parts = explode("@",$val);
+					if($parts[1] == $id){
+						$name = $parts[0];
+						unset($config["forums"][$key]);
+					}
+				}
+				$config["forums"] = array_unique($config["forums"]);
 				$done = $this->spyc->dump($config,4);
 				$handle = fopen("config.php","w");
 				$output = "<?php if(!defined('BASEPATH'))exit();?>\n$done";
@@ -48,7 +54,7 @@ class Delete_m extends Model {
 				fclose($handle);
 				$this->db->where("forum",$id);
 				$this->db->delete("posts");
-				$this->common->setFlash("message","$name and all its posts deleted");
+				$this->common->setFlash("message","$name, and all its posts, deleted");
 				redirect("admin/forums");
 			}
 		}

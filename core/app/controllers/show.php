@@ -29,7 +29,7 @@ class Show extends Controller {
 		$this->common->yield("help");
 	}
 	function login(){
-		$this->common->yield("login");
+		$this->common->yield("login","guest");
 	}
 	function signup(){
 		$this->common->yield("signup","guest");

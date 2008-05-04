@@ -77,7 +77,7 @@ class Common extends Model{
 				if($offset < 0 || empty($offset)){
 					$offset = 0;
 				}
-				$query = $this->db->get_where("posts",array("type" => "first"),10,$offset);
+				$query = $this->db->get_where("posts",array("type" => "first"),$info["site"]["per-page"],$offset);
 				$countq = $this->db->get_where("posts",array("type" => "first","forum" => $forum));
 				$count = $countq->num_rows();
 				$this->load->library('pagination');
@@ -97,8 +97,7 @@ class Common extends Model{
 				$data["pageTitle"] = "Forum: $name";
 			}
 			else{
-				// redirect("forums");
-				print_r($forums);
+				redirect("forums");
 			}
 		}
 		elseif($view == "topic"){

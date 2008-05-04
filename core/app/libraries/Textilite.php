@@ -20,7 +20,6 @@ class TextiLite{
 	*/
 
 	function paragraph($text){
-		$text = $this->fix_linebreaks($text);
 		$paragraphs = explode("\n\n", $text);
 		$output = null;
 		foreach($paragraphs as $paragraph) {
@@ -29,16 +28,12 @@ class TextiLite{
 		return $output;
 	}
 
-	function fix_linebreaks($text){
-		return str_replace(array("\r\n", "\r", "\n"), "\n", $text);
-	}
-
 	function textile($text = null){
 		$regex = array(
-			"/(.+)\n(.+)/",
-			"/\*([^\*]+)\*/",
-			"/\_([^\*]+)\_/",
-			"/(!)(.*?)(!)/",
+			'/(.+)\n(.+)/',
+			'/\*([^\*]+)\*/',
+			'/\_([^\*]+)\_/',
+			'/(!)((?:http|https)(?::\\/{2}[\\w]+)(?:[\\/|\\.]?)(?:[^\\s"]*))(!)/',
 			'/(")(.*?)(").*?((?:http|https)(?::\\/{2}[\\w]+)(?:[\\/|\\.]?)(?:[^\\s"]*))/', 
 		); 
 		$replace = array(
@@ -52,8 +47,8 @@ class TextiLite{
 	}
 	
 	function process($text){
-		$text = $this->textile($text);
 		$text = $this->paragraph($text);
+		$text = $this->textile($text);
 		return $text;
 	}
 

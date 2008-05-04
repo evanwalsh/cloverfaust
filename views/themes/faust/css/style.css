@@ -39,6 +39,7 @@ h3{font-size:1.2em;font-weight:bold;}
 #search input.submit{display:none;}
 form label{width:240px;float:left;}
 form textarea{width:540px;}
+form .aside{color:#888;}
 .listpost{margin:10px 0;}
 .listpost h3{display:inline;font-size:2em;;}
 .listpost h4{display:inline;font-weight:bold;color:#999;}

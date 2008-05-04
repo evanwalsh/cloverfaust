@@ -18,6 +18,9 @@ class Install extends Controller {
 		$rules['dbuser'] = "required";
 		$rules['dbpass'] = "required";
 		$rules['db'] = "required";
+		$rules['user'] = "required";
+		$rules['pass'] = "required";
+		$rules['email'] = "required";
 		$this->validation->set_rules($rules);
 		if($this->validation->run() == FALSE){
 			$this->load->view("install/main");
