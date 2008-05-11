@@ -1,5 +1,13 @@
 <?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+if(file_exists("config.php")){
+	$file = file_get_contents("config.php"); // gets the config file since libraries won't load
+	$key = preg_match_all('/(encryption-key:)(.*?)(\\n)/is',$file,$conf); // finds the key
+}
+else{
+	$conf[2][0] = md5($_SERVER['HTTP_HOST']);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -218,7 +226,7 @@ $config['cache_path'] = '';
 | enabled you MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = "harA4221Juk4IU3a";
+$config['encryption_key'] = $conf[2][0];
 
 /*
 |--------------------------------------------------------------------------
