@@ -1,4 +1,4 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class TextiLite{
 	
@@ -47,6 +47,7 @@ class TextiLite{
 	}
 	
 	function process($text){
+		$text = strip_tags($text);
 		$text = $this->paragraph($text);
 		$text = $this->textile($text);
 		return $text;

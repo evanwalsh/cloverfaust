@@ -27,7 +27,7 @@ class Delete_m extends Model {
 				}
 				$this->db->delete("posts");
 				$this->common->setFlash("message","Post deleted");
-				redirect("show/forum/".$forum);
+				redirect("forum/".$forum);
 			}
 		}
 	}
@@ -64,16 +64,16 @@ class Delete_m extends Model {
 	}
 	function user(){
 		if($this->common->getGroup() == "1"){
-			$sec = $this->uri->segment(3);
-			$id = $this->uri->segment(4);
+			$id = $this->uri->segment(3);
 			if(empty($id)){
-				redirect("admin");
+				redirect();
 			}
 			else{
 				$this->db->where("id",$id);
 				$this->db->delete("users");
 				$this->db->where("author",$id);
 				$this->db->delete("posts");
+				$this->common->setFlash("message","User deleted");
 				redirect("admin/users");
 			}
 		}

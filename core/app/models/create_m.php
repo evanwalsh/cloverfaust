@@ -66,9 +66,6 @@ class Create_m extends Model{
 			$this->load->library("Textilite");
 			$conv_body = $this->textilite->process($this->input->post("body"));
 		}
-		elseif($this->session->userdata("editor") == "html"){
-			$conv_body = strip_tags($this->input->post("body"),$info["site"]["allowed-tags"]);
-		}
 		$data = array(
 			"title" => $this->input->post("title"),
 			"url" => $this->uri->segment(3),
@@ -114,29 +111,22 @@ class Create_m extends Model{
 		}
 	}
 	function user(){
-		$rules['username'] = "required";
-		$rules['password'] = "required";
-		$rules['email'] = "required|valid_email";
-		$rules['timezones'] = "required";
-		$rules['editor'] = "required";
-		$this->validation->set_rules($rules);
-		if($this->validation->run() == FALSE){
-			$this->common->setFlash("error",$this->validation->error_string);
-			redirect("show/signup");
-		}
-		else{
+		if($this->common->getGroup() == 1){
 			$user = array(
 				"name" => $this->input->post("username"),
 				"password" => md5($this->input->post("password")),
 				"email" => $this->input->post("email"),
-				"group" => "0",
+				"group" => $this->input->posT("group"),
 				"timezone" => $this->input->post("timezones"),
 				"editor" => $this->input->post("editor"),
 				"joined" => now()
 			);
 			$this->db->insert("users",$user);
-			$this->common->setFlash("message","You're signed up! Now, login and get to posting!");
-			redirect("show/login");
+			$this->common->setFlash("message","User created");
+			redirect("admin/users");
+		}
+		else{
+			redirect();
 		}
 	}
 	function urlToTitle($url){

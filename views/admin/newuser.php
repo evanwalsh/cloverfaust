@@ -1,0 +1,27 @@
+<?=form_open("create/user/")?>
+	<ul>
+		<li>
+			<h3>Username</h3>
+			<?=form_input("username")?>
+		</li>
+		<li>
+			<h3>Email</h3>
+			<?=form_input("email")?>
+		</li>
+		<li>
+			<h3>Password</h3>
+			<?=form_input("newpass")?>
+		</li>
+		<li>
+			<h3>Group</h3>
+			<?=form_dropdown("group",array(1 => "Admin",2 => "Member"))?>
+		</li>
+		<li>
+			<h3>Timezone</h3>
+			<?=timezone_menu()?>
+		</li>
+		<li>
+			<?=form_submit("","Create")?>
+		</li>
+	</ul>
+<?=form_close()?>

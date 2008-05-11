@@ -8,7 +8,6 @@ $(document).ready(function(){
 		revert: true, 
 		containment: '#forums',
 		opacity: 0.8,
-		axis: 'x',
 		placeholder: 'placehold',
 		handle: 'img'
 	});

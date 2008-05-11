@@ -1,5 +1,5 @@
-<?=anchor("admin/create/forum","Make a new forum",array("id" => "newforum","class" => "adminlink"))?>
 <?=form_open("admin/options/forum")?>
+<?=anchor("admin/create/forum","Make a new forum",array("class" => "add"))?> <?=form_submit("save","Save forum order")?>
 <ul id="forums">
 <?foreach($forums as $name => $url):?>
 	<li>
@@ -13,5 +13,4 @@
 	</li>
 <?endforeach;?>
 </ul>
-<?=form_submit("save","Save order")?>
 <?=form_close()?>

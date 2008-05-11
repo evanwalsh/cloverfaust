@@ -32,7 +32,7 @@ class Admin_m extends Model {
 			if($view == "home"){
 				$data["pageTitle"] = "Home";
 			}
-			if($view == "create"){
+			elseif($view == "create"){
 				if($opt == "forum"){
 					$view = "newforum";
 					$data["pageTitle"] = "New forum";
@@ -45,7 +45,7 @@ class Admin_m extends Model {
 					redirect("admin");
 				}
 			}
-			if($view == "edit"){
+			elseif($view == "edit"){
 				if($opt == "forum"){
 					$url = $this->uri->segment(4);
 					if(!empty($url)){
@@ -66,15 +66,55 @@ class Admin_m extends Model {
 				}
 				elseif($opt == "user"){
 					$view = "edituser";
+					$query = $this->db->get_where("users",array("id" => $this->uri->segment(4)));
+					if($query->num_rows() > 0){
+						$data["user"] = $query->row();
+						$data["pageTitle"] = "Edit user: ".$data["user"]->name;
+					}
+					else{
+						$this->common->setFlash("error","User not found");
+						redirect("admin/users");
+					}
 				}
 				else{
 					redirect("admin/home");
 				}
 			}
-			if($view == "options"){
+			elseif($view == "options"){
 				$data["perPage"] = $info["site"]["per-page"];
-				$data["rss"] = $info["site"]["rss"];
 				$data["allowedTags"] = $info["site"]["allowed-tags"];
+				$data["themes"] = $themes;
+				$data["pageTitle"] = "Options";
+			}
+			elseif($view == "forums"){
+				$this->load->model("theme");
+				foreach($info["forums"] as $forum){
+					$parts = explode("@",$forum);
+					$forums[$parts[0]] = $parts[1];
+				}
+				$data["forums"] = $forums;
+				$data["pageTitle"] = "Forums";
+			}
+			elseif($view == "users"){
+				$offset = $this->uri->segment(3);
+				if($offset < 0 || empty($offset)){
+					$offset = 0;
+				}
+				$countq = $this->db->get("users");
+				$count = $countq->num_rows();
+				$this->load->library('pagination');
+				$config['base_url'] = base_url()."admin/users";
+				$config['total_rows'] = $count;
+				$config['uri_segment'] = "3";
+				$config['per_page'] = $info["site"]["per-page"];
+				$config['num_links'] = "3";
+				$this->pagination->initialize($config);
+				$this->db->order_by("id","desc");
+				$query = $this->db->get("users",$info["site"]["per-page"],$offset);
+				$data["users"] = $query->result();
+				$data["pageTitle"] = "Users";
+			}
+			elseif($view == "themes"){
 				$themes = $this->getThemes();
 				foreach($themes as $theme){
 					$yaml = $this->spyc->load("views/themes/$theme/info.yml");
@@ -89,36 +129,20 @@ class Admin_m extends Model {
 					$themes[$theme] = $yaml;
 				}
 				$data["themes"] = $themes;
-				$data["pageTitle"] = "Options";
+				$data["pageTitle"] = "Themes";
 				$data["siteTheme"] = $info["site"]["theme"];
-			}
-			if($view == "forums"){
-				$this->load->model("theme");
-				foreach($info["forums"] as $forum){
-					$parts = explode("@",$forum);
-					$forums[$parts[0]] = $parts[1];
-				}
-				$data["forums"] = $forums;
-				$data["pageTitle"] = "Forums";
 			}
 			$data["yield"] = $this->load->view("admin/$view",$data,true);
 			$this->load->view("admin/layout",$data);
 		}
 	}
 	function options(){
-		/*
-		   Function: getThemes
-		   	  Sets all the site's options
-		*/
 		$config = $this->common->getConfig();
 		$opt = $this->uri->segment(3);
-		if($opt !== "forum"){
+		if($opt == null){
 			$config["site"]["name"] = $this->input->post("name");
 			$config["site"]["subtitle"] = $this->input->post("subtitle");
-			$config["site"]["theme"] = $this->input->post("theme");
 			$config["site"]["per-page"] = $this->input->post("per-page");
-			$config["site"]["allowed-tags"] = $this->input->post("allowed-tags");
-			$config["site"]["rss"] = $this->input->post("rss");
 			$config["forums"] = array_unique($config["forums"]);
 			$done = $this->spyc->dump($config,4);
 			$handle = fopen("config.php","w");
@@ -128,7 +152,7 @@ class Admin_m extends Model {
 			$this->common->setFlash("message","Options saved");
 			redirect("admin/options");
 		}
-		else{
+		elseif($opt == "forum"){
 			foreach($_POST as $key => $val){
 				$parts = explode("_",$key);
 				if($parts[0] == "forum"){
@@ -144,6 +168,19 @@ class Admin_m extends Model {
 			$this->common->setFlash("message","Forum order saved");
 			redirect("admin/forums");
 		}
+	}
+	function themeChange(){
+		$theme = $this->uri->segment(3);
+		$config = $this->common->getConfig();
+		$config["site"]["theme"] = $theme;
+		$config["forums"] = array_unique($config["forums"]);
+		$done = $this->spyc->dump($config,4);
+		$handle = fopen("config.php","w");
+		$output = "<?php if(!defined('BASEPATH'))exit();?>\n$done";
+		fwrite($handle,$output);
+		fclose($handle);
+		$this->common->setFlash("message","Theme changed");
+		redirect("admin/themes");
 	}
 	function getThemes(){
 		/*

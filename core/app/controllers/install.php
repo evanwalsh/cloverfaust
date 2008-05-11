@@ -31,8 +31,6 @@ class Install extends Controller {
 			$config["site"]["subtitle"] = $this->input->post("subtitle");
 			$config["site"]["theme"] = "faust";
 			$config["site"]["per-page"] = 10;
-			$config["site"]["rss"] = "yes";
-			$config["site"]["allowed-tags"] = "<p><a><strong><em><br>";
 			$config["site"]["encryption-key"] = random_string('unique');
 			$config["database"]["host"] = $this->input->post("dbhost");
 			$config["database"]["user"] = $this->input->post("dbuser");

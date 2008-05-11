@@ -48,5 +48,13 @@ class Admin extends Controller {
 			$this->m->options();
 		}
 	}
+	function themes(){
+		if(!$this->uri->segment(3)){
+			$this->m->yield("themes");
+		}
+		else{
+			$this->m->themeChange();
+		}
+	}
 }
 ?>

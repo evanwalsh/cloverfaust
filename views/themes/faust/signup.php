@@ -7,8 +7,6 @@
 	<p><?=form_input("email")?></p>
 	<p><?=form_label("Timezone")?></p>
 	<p><?=timezone_menu()?></p>
-	<p><?=form_label("Editor of choice")?></p>
-	<p><?=form_dropdown("editor",array("textile" => "Textile","markdown" => "Markdown"))?></p>
 	<p><?=form_label("&nbsp;")?></p>
 	<p><?=form_submit("","Signup")?></p>
 <?=form_close()?>

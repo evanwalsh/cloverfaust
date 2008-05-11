@@ -2,7 +2,7 @@
 class Common extends Model{
 	function Common(){
 		parent::model();
-		// $this->output->enable_profiler(TRUE); // debug :]
+		// $this->plugins->addHooks(array("beforeYield"));
 	}
 	function yield($view,$access = false){
 		/*
@@ -17,8 +17,8 @@ class Common extends Model{
 		      The page wanted with extra data included
 		*/
 		// TODO: Author caching
-		$this->load->library("Spyc");
-		$info = $this->spyc->load("config.php"); // yaml <3
+		$info = $this->common->getConfig();
+		// $this->plugins->loadPlugins($info["plugins"]);
 		$data["siteName"] = $info["site"]["name"];
 		$data["siteSubtitle"] = $info["site"]["subtitle"];
 		$data["theme"] = $info["site"]["theme"];
@@ -42,6 +42,9 @@ class Common extends Model{
 			$data["error"] = $flashError;
 		}
 		// yeah. we're done with that. let's move on
+		/*if($this->plugins->hooksExist("beforeYield")){
+			$this->plugins->runHook("beforeYield");
+		}*/
 		if($view == "home"){
 			$data["pageTitle"] = $data["siteSubtitle"];
 			$this->db->limit(10);
@@ -208,7 +211,7 @@ class Common extends Model{
 		elseif($view == "help"){
 			$data["pageTitle"] = "Help";
 		}
-		$data["yield"] = $this->load->view("themes/$data[theme]/$view",$data,true);
+		$data["yield"] .= $this->load->view("themes/$data[theme]/$view",$data,true);
 		$this->load->view("themes/$data[theme]/layout",$data);
 	}
 	function setFlash($type,$message){

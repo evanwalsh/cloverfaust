@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
   /**
    * Spyc -- A Simple PHP YAML Class
    * @version 0.2.(5) -- 2006-12-31

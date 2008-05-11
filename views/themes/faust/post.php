@@ -4,7 +4,6 @@
 	<p><?=form_label("Your post's body")?></p>
 	<p><?=form_textarea("body")?></p>
 	<p><?=form_label("&nbsp;")?></p>
-	<p class="aside">You are using <?=$this->session->userdata("editor")?> to format posts.</p>
 	<p><?=form_label("&nbsp;")?></p>
 	<p><?=form_submit("","Post")?><?=form_submit("","Cancel",'onClick="window.location=\''.base_url()."forum/".$this->uri->segment(3).'\';return false;"')?></p>
 <?=form_close()?>

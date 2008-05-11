@@ -68,8 +68,8 @@ class Edit_m extends Model{
 	}
 	function user(){
 		if($this->common->getGroup() == "1"){
-			$id = $this->input->post("id");
-			$username = $this->input->post("user");
+			$id = $this->uri->segment(3);
+			$username = $this->input->post("username");
 			$email = $this->input->post("email");
 			$newpass = $this->input->post("newpass");
 			$group = $this->input->post("group");
@@ -83,6 +83,7 @@ class Edit_m extends Model{
 			}
 			$this->db->where("id",$id);
 			$this->db->update("users",$data);
+			$this->common->setFlash("message","User edited");
 			redirect("admin/users");
 		}
 		else{
