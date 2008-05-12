@@ -7,36 +7,32 @@
 		<script src="<?=base_url()?>views/themes/<?=$theme?>/js/main.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body id="<?=$this->uri->segment(1).$this->uri->segment(2)?>">
-		<div id="nav">
-			<ul>
-				<li id="search">
-					<?=form_open("show/search")?>
-						<?=form_input("search")?>
-						<?=form_submit("","search")?>
-					<?=form_close()?>
-				</li>
-				<?if($loggedIn == true):?>
-				<li>Logged in as: <?=$this->session->userdata("name")?></li>
-				<?endif;?>
-				<li><?=anchor("home","Home")?></li>
-				<?if($loggedIn == false):?>
-				<li><?=anchor("login","Login")?></li>
-				<li><?=anchor("signup","Sign up")?></li>
-				<?endif;?>
-				<li><?=anchor("forums","Forums")?></li>
-				<?if($loggedIn == true):?>
-				<li><?=anchor("account","Account")?></li>
-				<li><?=anchor("backend/logout","Logout")?></li>
-				<?endif;?>
-				<li><?=anchor("help","Help")?></li>
-				<?if($this->common->getGroup() == 1):?>
-				<li><?=anchor("admin","Admin")?></li>
-				<?endif;?>
-			</ul>
-		</div>
-		<div id="head">
-			<h1><?=$siteName?></h1>
-			<h2><?=$pageTitle?></h2>
+		<div id="beforewrap">
+			<div id="nav">
+				<ul>
+					<li><?=anchor("home","Home")?></li>
+					<?if($loggedIn == false):?>
+					<li><?=anchor("login","Login")?></li>
+					<li><?=anchor("signup","Sign up")?></li>
+					<?endif;?>
+					<li><?=anchor("forums","Forums")?></li>
+					<?if($loggedIn == true):?>
+					<li><?=anchor("account","Account")?></li>
+					<li><?=anchor("backend/logout","Logout")?></li>
+					<?endif;?>
+					<li><?=anchor("help","Help")?></li>
+					<?if($this->common->getGroup() == 1):?>
+					<li><?=anchor("admin","Admin")?></li>
+					<?endif;?>
+					<?if($loggedIn == true):?>
+					<li>Hey, <?=$this->session->userdata("name")?></li>
+					<?endif;?>
+				</ul>
+			</div>
+			<div id="head">
+				<h1><?=$siteName?></h1>
+				<h2><?=$pageTitle?></h2>
+			</div>
 		</div>
 		<div id="wrap">
 			<div id="content">

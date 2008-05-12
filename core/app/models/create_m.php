@@ -2,7 +2,6 @@
 class Create_m extends Model{
 	function Create_m(){
 		parent::Model();
-		// TODO: Fix forum/post checking
 	}
 	function topic(){
 		$this->load->library('validation');

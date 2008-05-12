@@ -2,6 +2,7 @@
 class Edit_m extends Model{
 	function Edit_m(){
 		parent::model();
+		$this->load->database();
 	}
 	function post(){
 		$query = $this->db->get_where("posts",array("id" => $this->uri->segment(3)));
@@ -63,8 +64,9 @@ class Edit_m extends Model{
 		}
 		$this->db->where("name",$user);
 		$this->db->update("users",$data);
-		$this->common->setFlash("message","Account details updated");
-		redirect("show/home");
+		$this->session->sess_destroy();
+		// $this->common->setFlash("message","Login needed to change account details");
+		redirect("login");
 	}
 	function user(){
 		if($this->common->getGroup() == "1"){

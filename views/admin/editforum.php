@@ -1,5 +1,3 @@
-<?=anchor("delete/forum/".$url,"Delete this forum",array("id" => "deleteforum","class" => "adminlink"))?>
-
 <?=form_open("edit/forum/".$this->uri->segment(4))?>
 	<ul>
 		<li>
@@ -8,6 +6,7 @@
 		</li>
 		<?=form_hidden("oldname",$forum)?>
 		<li>
-			<?=form_submit("","Edit")?>
+			<?=form_submit("","Edit")?> 
+			<?=anchor("delete/forum/".$url,"Delete",array("class" => "delete"))?>
 		</li>
 <?=form_close()?>

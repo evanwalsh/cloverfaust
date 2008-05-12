@@ -43,14 +43,14 @@ class Install extends Controller {
 			$output = "<?php if(!defined('BASEPATH'))exit();?>\n$done";
 			fwrite($handle,$output);
 			fclose($handle);
-			sleep(1); // The file won't write without this
+			sleep(2); // The file won't write without this
 			$user = array(
 				"name" => $this->input->post("user"),
 				"password" => md5($this->input->post("pass")),
 				"email" => $this->input->post("email"),
 				"group" => "1",
 				"timezone" => $this->input->post("timezones"),
-				"editor" => $this->input->post("editor")
+				"editor" => "textile"
 			);
 			$postTable = 'CREATE TABLE IF NOT EXISTS `'.$this->input->post("dbprefix").'posts` (
 			  `id` int(11) NOT NULL auto_increment,
@@ -76,6 +76,7 @@ class Install extends Controller {
 			  `editor` varchar(500) NOT NULL,
 			  PRIMARY KEY  (`id`)
 			) ENGINE=MyISAM  DEFAULT CHARSET=latin1;';
+			$this->load->database();
 			$this->db->query($postTable);
 			$this->db->query($userTable);
 			$this->db->insert("users",$user);

@@ -43,7 +43,6 @@
 							<li><?=form_label("Password")?> <?=form_input("pass")?></li>
 							<li><?=form_label("Email")?> <?=form_input("email")?></li>
 							<li><?=form_label("Timezone")?> <?=timezone_menu()?></li>
-							<li><?=form_label("Editor")?> <?=form_dropdown("editor",array("textile" => "Textile","html" => "Raw html"))?></li>
 						</ol>
 					</div>
 					

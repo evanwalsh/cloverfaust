@@ -1,5 +1,3 @@
-
-
 <?=form_open("edit/user/".$user->id)?>
 	<ul>
 		<li>
@@ -24,7 +22,7 @@
 		</li>
 		<li>
 			<?=form_submit("","Edit")?>
-			<?=anchor("delete/user/".$user->id,"Delete this user",array("class" => "delete"))?>
+			<?=anchor("delete/user/".$user->id,"Delete",array("class" => "delete"))?>
 		</li>
 	</ul>
 <?=form_close()?>

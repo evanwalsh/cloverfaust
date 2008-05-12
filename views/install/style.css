@@ -2,6 +2,9 @@
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:400}code{font-family:monospace}em{font-style:italic}strong{font-weight:700}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:400}q:before,q:after{content:''}fieldset,img,abbr,acronym{border:0}
 /* END RESET */
 body{background:#222;color:#fafafa;text-shadow:#000 0 0 0;font:1em Helvetica,Arial,sans-serif;}
+a{text-decoration:none;}
+a:link,a:active,a:visited{color:#009bf9;}
+a:hover{color:#00FA4F;}
 #wrap{width:600px;margin:20px auto;}
 #head{margin:0 0 10px 0;}
 #head h1,#head h2{font-weight:bold;display:inline;}
