@@ -16,11 +16,11 @@
 					<li><?=anchor("signup","Sign up")?></li>
 					<?endif;?>
 					<li><?=anchor("forums","Forums")?></li>
+					<li><?=anchor("help","Help")?></li>
 					<?if($loggedIn == true):?>
 					<li><?=anchor("account","Account")?></li>
 					<li><?=anchor("backend/logout","Logout")?></li>
 					<?endif;?>
-					<li><?=anchor("help","Help")?></li>
 					<?if($this->common->getGroup() == 1):?>
 					<li><?=anchor("admin","Admin")?></li>
 					<?endif;?>

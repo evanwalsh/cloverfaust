@@ -9,7 +9,7 @@
 		<div id="wrap">
 			<div id="head">
 				<h1>cloverfaust installer</h1>
-				<h2>release 1</h2>
+				<h2>release 001</h2>
 			</div>
 			<div id="content">
 			

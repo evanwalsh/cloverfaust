@@ -2,7 +2,7 @@
 <div class="post" id="post<?=$post->id?>">
 	<h4><?=$this->theme->getAuthor($post->author)?></h4>
 	<ul class="data">
-		<li><?=$this->theme->postDate($post->time)?></li>
+		<li><?=anchor("#post".$post->id,$this->theme->postDate($post->time))?></li>
 		<li><?=$this->theme->postLink($post->id,$post->author,"delete")?></li>
 		<li><?=$this->theme->postLink($post->id,$post->author,"edit")?></li>
 	</ul>

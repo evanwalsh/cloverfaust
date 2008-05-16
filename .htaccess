@@ -1,3 +1,0 @@
-RewriteEngine on
-RewriteCond $1 !^(index\.php|robots\.txt|favicon\.ico|user_guide|views)
-RewriteRule ^(.*)$ index.php/$1 [L,QSA]

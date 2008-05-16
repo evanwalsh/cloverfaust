@@ -13,7 +13,7 @@
 			</div>
 			<div id="content">
 				<h3>Hey, you're done!</h3>
-				<p>That's the end of the installation process.  You can now <?=anchor("show/login","login")?> to your new clvrfst forum.</p>
+				<p>That's the end of the installation process.  You can now <?=anchor("login","login")?> to your new cloverfaust forum.</p>
 			</div>
 			<div id="footer">
 				&copy; 2008 Evan Walsh

@@ -6,27 +6,34 @@ p{margin:10px 0;}
 a{text-decoration:none;outline:none;}
 a:link,a:active,a:visited{color:#187DA5;}
 a:hover{color:#000;}
-input,textarea{background:#fafafa;border:#bbb 2px solid;padding:3px;font-family:Helvetica,Arial,sans-serif;font-size:.8em;}
+input,textarea,select,button{background:#fafafa;border:#bbb 2px solid;padding:3px;font-family:Helvetica,Arial,sans-serif;font-size:.8em;}
+button{color:#000!important;}
 input:focus,textarea:focus{border-color:#444;}
 h3{font-size:1.2em;font-weight:bold;}
+ul,ol{margin:10px 0;padding:0 0 0 40px;list-style-position:inside;}
+ul{list-style:disc;}
+ol{list-style:decimal;}
+code{font-family:"Monaco",monospace;}
 .clr{clear:both;}
 #beforewrap,#wrap{width:800px;margin:0 auto;}
 #head{margin:0 0 40px 0;}
 #head h1{color:#fff;font-size:1.5em;font-weight:bold;display:inline;background:#000;padding:10px;margin:0 0 0 20px;}
 #head h2{display:inline;margin-left:10px;}
 #nav{background:#000;border-bottom:#174f70 10px solid;color:#fff;}
-#nav ul{font-size:1.1em;padding:10px 0;}
+#nav ul{font-size:1.1em;padding:10px 0;margin:0;}
 #nav ul li{display:inline;padding:0 0 0 30px;}
 #nav a,#recents a{color:#E79E31;}
 #nav a:hover,#recents a:hover{color:#2796C2;}
 #nav form{display:inline;}
 #content{overflow:hidden;}
 #home #content h3{font-size:1.5em;margin-bottom:10px;}
+#recents{margin:0;padding:0;}
 #recents li{background:#111;padding:4px;font-size:1em;margin:0 0 10px 0;color:#fff;}
 #recents li img{margin-bottom:-3px;}
 #recents li.first{border-left:#174f70 10px solid;}
 #recents li.reply{border-left:#177170 10px solid;}
 #recents .time{text-transform:lowercase;}
+#forums,#posts{list-style:none;margin:0;padding:0;}
 #forums .forum{margin:0 0 15px 0;}
 #forums h3{font-weight:bold;font-size:2em;}
 #forums h4{font-size:1.4em;text-transform:uppercase;}

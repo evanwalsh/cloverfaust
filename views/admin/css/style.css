@@ -33,11 +33,16 @@ input,textarea,select{font-size:1em;font-family:Helvetica,Arial,sans-serif;}
 #forums li{width:100%;}
 #forums li .info{float:left;}
 #forums li img{float:right;padding:5px 0 0 0;}
-#themes li{width:300px;float:left;background:#fafafa;padding:10px;border:#ddd 1px solid;margin:0 10px 10px 0;}
-#themes li.activetheme{background:#EEFFEF;border:#badabc 1px solid;}
+#themes li{width:45%;float:left;background:#fafafa;padding:10px;border:#ddd 1px solid;margin:0 10px 10px 0;}
+#themes li .themescr{background:#aaa;border:#aaa 1px solid;height:150px;margin:10px 0;}
+#themes li.activetheme{background:#E4F3D9;border-color:#62C223;}
+#themes li.activetheme .themescr{border-color:#62C223;}
 #themes li h3{font-size:1.1em;font-weight:normal;}
 #themes li h4{font-size:.8em;}
-#themes li .themescr{background:#aaa;border:#aaa 1px solid;height:140px;margin:10px 0;}
 #footer{display:block;color:#aaa;}
 .placehold{border:#ccc 1px dotted;width:auto;border-width:1px 0;}
 .hide{visibility:hidden;}
+.installform{margin:10px 0;background:#f5f5f5;padding:10px;}
+.installform h3{font-size:1.3em;}
+.installform h4{font-size:.9em;color:#777;}
+.installform input{margin:10px 0 0 0;}

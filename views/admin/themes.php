@@ -1,3 +1,9 @@
+<?=form_open_multipart("admin/install/theme",array("id" => "themeinstall","class" => "installform"))?>
+	<h3>Install a new theme</h3>
+	<h4>Upload the zip archive containing the theme files</h4>
+	<?=form_upload("file")?>
+	<?=form_submit("","Install")?>
+<?=form_close()?>
 <ul id="themes">
 <?foreach($themes as $name => $data):?>
 	<li<?if($theme == $name):?> class="activetheme"<?endif;?>>
