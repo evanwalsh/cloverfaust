@@ -11,6 +11,7 @@ Server requirements:
 To install Cloverfaust, follow these instructions:
 
 	- Upload all the files contained in this release
+	  Note: make sure the folder that Cloverfaust is installed is CHMOD'd to 777
 
 	- Navigate to the place where Cloverfaust was uploaded with your
 	  web browser.  Example: http://example.com/cloverfaust/

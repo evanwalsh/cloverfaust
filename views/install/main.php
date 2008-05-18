@@ -17,6 +17,8 @@
 				
 				<?=form_open("install/go")?>
 					
+					<h3>Note: make sure the folder that Cloverfaust is installed is CHMOD'd to 777</h3>
+					
 					<div id="site">
 						<h3>Site</h3>
 						<ol>
