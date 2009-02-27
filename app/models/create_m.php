@@ -118,7 +118,6 @@ class Create_m extends Model{
 				"group" => $this->input->posT("group"),
 				"timezone" => $this->input->post("timezones"),
 				"editor" => $this->input->post("editor"),
-				"joined" => now()
 			);
 			$this->db->insert("users",$user);
 			$this->common->setFlash("message","User created");
